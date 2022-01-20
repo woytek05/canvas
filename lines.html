@@ -22,6 +22,14 @@
     <script src="highlight/highlight.min.js"></script>
     <script>hljs.highlightAll();</script>
 
+    <style>
+        canvas {
+            width: 300px;
+            height: 300px;
+            border: 3px solid black;
+        }
+    </style>
+
 </head>
 
 <body>
@@ -145,29 +153,87 @@
     </nav>
 
     <div class="main-container">
-        <h1>Cześć!</h1>
+
+        <h1>Linie</h1>
+
         <details>
             <summary>
-                <h3>Jak zacząć?</h3>
+                <h3>Linia</h3>
             </summary>
             <p>
-                1. Umieść element <span class="code"><span class="grey-code">&lt;</span><span class="red-code">canvas</span><span class="grey-code">&gt;</span></span> w dokumencie HTML. Pamiętaj o zamknięciu znacznika. Zawartość w środku wyświetli się, jeśli canvas nie jest wspierany przez przeglądarkę. Jest to tzw. fallback content.
+                Aby narysować linię, korzystamy z metod <span class="blue-code">beginPath</span><span class="grey-code">()</span>, <span class="blue-code">moveTo</span><span class="grey-code">()</span>, <span class="blue-code">lineTo</span><span class="grey-code">()</span> i <span class="blue-code">stroke</span><span class="grey-code">()</span>.
             </p>
-            <pre><code class="html">&lt;canvas id="canvas"&gt;&lt;&sol;canvas&gt;</code></pre>
             <p>
-                2. Złap go za pomocą JavaScriptu.
+                Na początek używamy metody <span class="blue-code">beginPath</span><span class="grey-code">()</span>, aby utworzyć nową ścieżkę. Następnie metody <span class="blue-code">moveTo</span><span class="grey-code">()</span> do ustawienia punktu kontekstowego (tj. kursora rysowania). Potem metody <span class="blue-code">lineTo</span><span class="grey-code">()</span> do narysowania linii
+                prostej od pozycji początkowej do pozycji końcowej. Na koniec, aby linia była widoczna, ustawiamy obrys linii za pomocą metody <span class="blue-code">stroke</span><span class="grey-code">()</span>. Domyślnym kolorem obrysu jest czarny.
             </p>
-            <pre><code class="javascript">const canvas = document.getElementById("canvas");</code></pre>
-            <p>
-                3. Utwórz kontekst dla tego elementu.
-            </p>
-            <pre><code class="javascript">const canvas = document.getElementById("canvas");
-const ctx = canvas.getContext("2d");</code></pre>
-            <p>
-                Podczas korzystania z canvasa ważne jest, aby zrozumieć różnicę między samym canvasem a jego kontekstem. Element <span class="code"><span class="grey-code">&lt;</span><span class="red-code">canvas</span><span class="grey-code">&gt;</span></span> to rzeczywisty węzeł DOM osadzony na stronie HTML. Kontekst canvasa to obiekt z właściwościami i metodami, których można użyć do
-                renderowania
-                grafiki wewnątrz tego elementu. Kontekst może być 2d lub 3d.
-            </p>
+
+            <div class="code-presentation">
+
+                <div class="code-container">
+                    <pre><code class="code html">&lt;canvas id="myCanvas"&gt;&lt;&sol;canvas&gt;</code></pre>
+
+                    <pre><code class="code css">canvas &lcub;
+    width: 300px;
+    height: 300px;
+    border: 3px solid black;
+&rcub;</code></pre>
+
+                    <pre><code class="code javascript">const canvas = document.getElementById("myCanvas");
+const ctx = canvas.getContext("2d");
+        
+ctx.beginPath();
+ctx.moveTo(50, 75);
+ctx.lineTo(250, 75);
+ctx.stroke();</code></pre>
+
+                </div>
+
+                <div class="code-result">
+
+                    <canvas id="myCanvas"></canvas>
+                    <script>
+                        const canvas = document.getElementById("myCanvas");
+                        const ctx = canvas.getContext("2d");
+
+                        ctx.beginPath();
+                        ctx.moveTo(50, 75);
+                        ctx.lineTo(250, 75);
+                        ctx.stroke();
+                    </script>
+
+                </div>
+
+            </div>
+
+        </details>
+
+        <details>
+            <summary>
+                <h3>Szerokość linii</h3>
+            </summary>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis sapiente similique, nesciunt excepturi sint repellat? Porro quod sunt, minima voluptatibus, nam est nobis temporibus aliquam laudantium doloremque voluptates alias ratione.</p>
+        </details>
+
+        <details>
+            <summary>
+                <h3>Kolor linii</h3>
+            </summary>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis sapiente similique, nesciunt excepturi sint repellat? Porro quod sunt, minima voluptatibus, nam est nobis temporibus aliquam laudantium doloremque voluptates alias ratione.</p>
+        </details>
+
+        <details>
+            <summary>
+                <h3>Zakończenie linii</h3>
+            </summary>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis sapiente similique, nesciunt excepturi sint repellat? Porro quod sunt, minima voluptatibus, nam est nobis temporibus aliquam laudantium doloremque voluptates alias ratione.</p>
+        </details>
+
+        <details>
+            <summary>
+                <h3>Ćwiczenie</h3>
+            </summary>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis sapiente similique, nesciunt excepturi sint repellat? Porro quod sunt, minima voluptatibus, nam est nobis temporibus aliquam laudantium doloremque voluptates alias ratione.</p>
         </details>
 
     </div>

@@ -1,0 +1,180 @@
+/* Google Fonts Import */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap');
+
+:root {
+    /* Colors */
+    --body-color: #FFF;
+    --sidebar-color: #F5FBE7;
+    --primary-color: #9BDC10;
+    --primary-color-white: #F6F5FF;
+    --text-color: #494949;
+    --primary-padding: 8px 40px;
+
+    /* Transitions */
+    --tran-01: all 0.1s ease;
+    --tran-02: all 0.2s ease;
+    --tran-03: all 0.3s ease;
+    --tran-04: all 0.4s ease;
+    --tran-05: all 0.5s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    height: 100vh;
+    background-color: var(--body-color);
+    min-width: 455px;
+}
+
+h1 {
+    font-size: 50px;
+    font-weight: 700;
+    color: var(--text-color);
+    padding: var(--primary-padding);
+}
+
+h3 {
+    font-size: 30px;
+    font-weight: 500;
+    color: var(--text-color);
+    display: inline;
+}
+
+details {
+    font-size: 20px;
+    color: var(--text-color);
+    margin: 8px 20px;
+    padding: 1rem;
+    margin: 1rem;
+    border-radius: 4px;
+}
+
+details[open] {
+    border: 1px solid rgba(0,0,0,.07);
+}
+
+p {
+    font-size: 20px;
+    color: var(--text-color);
+}
+
+pre code {
+    display: block;
+    overflow-x: scroll;
+    scrollbar-color: #666 #201c29;
+    font-family: "Fira Code", monospace;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 12px;
+    min-width: 100px;
+}
+
+.main-container {
+    position: relative;
+    left: 250px;
+    width: calc(100% - 250px);
+    height: 100vh;
+    transition: var(--tran-05);
+    background-color: var(--body-color);
+}
+
+span.code {
+    font-weight: 500;
+}
+
+span.red-code {
+    color: #E06C75;
+}
+
+span.grey-code {
+    color: #ABB2BF;
+}
+
+span.blue-code {
+    color: #61AEEE;
+}
+
+code.html::before {
+    display: block;
+    content: "HTML";
+    font-size: 16px;
+    font-weight: 500;
+    background-color: #F16529;
+    color: #FFF;
+    border-radius: 6px;
+    padding: 0.2rem;
+    width: max-content;
+    margin-bottom: 0.1rem;
+}
+
+code.css::before {
+    display: block;
+    content: "CSS";
+    font-size: 16px;
+    font-weight: 500;
+    background-color: #2965F1;
+    color: #FFF;
+    border-radius: 6px;
+    padding: 0.2rem;
+    width: max-content;
+    margin-bottom: 0.1rem;
+}
+
+code.javascript::before {
+    display: block;
+    content: "JS";
+    font-size: 16px;
+    font-weight: 500;
+    background-color: #F0DB4F;
+    color: #323330;
+    border-radius: 6px;
+    padding: 0.2rem;
+    width: max-content;
+    margin-bottom: 0.1rem;
+}
+
+div.code-presentation {
+    display: flex;
+    width: 100%;
+    margin-top: 1rem;
+    gap: 1rem;
+}
+
+div.code-container {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+div.code-result {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid rgba(0,0,0,.07);
+}
+
+.code-presentation .code-container pre {
+    width: 100%;
+}
+
+@media only screen and (max-width: 800px) {
+    div.code-presentation {
+        flex-direction: column;
+    }
+    div.code-container {
+        width: 100%;
+    }
+    div.code-result {
+        width: 100%;
+    }
+}
