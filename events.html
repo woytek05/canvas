@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Jakub Noga, Wiktor Wolanin, Wojciech Wysocki">
+    <meta name="description" content="Strona opisująca HTML Canvas">
+    <meta name="keywords" content="canvas, html, css, javascript">
+    <link rel="shortcut icon" href="images/logo.ico" type="image/x-icon">
+    <title>HTML Canvas</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles/index-style.css">
+
+    <!-- Boxicons CSS -->
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+
+    <!-- Highlight.js -->
+    <link rel="stylesheet" href="highlight/styles/atom-one-dark.min.css" />
+    <script src="highlight/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+
+    <style>
+        canvas {
+            border: 3px solid black;
+
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <nav class="sidebar close">
+
+        <header>
+
+            <div class="image-text">
+
+                <span class="image">
+                    <a href="index.html">
+                        <img src="images/logo.png" alt="Logo">
+                    </a>
+                </span>
+
+                <div class="text header-text">
+
+                    <span class="name">
+                        <a href="index.html">
+                            HTML Canvas
+                        </a>
+                    </span>
+
+                    <span class="description">
+                        <a href="index.html">
+                            Poradnik
+                        </a>
+                    </span>
+
+                </div>
+
+            </div>
+
+            <i class="bx bx-chevron-right toggle"></i>
+
+        </header>
+
+        <div class="menu-bar">
+
+            <div class="menu">
+
+                <ul class="menu-links">
+
+                    <li class="nav-link">
+                        <a href="lines.html">
+                            <i class="bx bx-right-arrow-alt icon"></i>
+                            <span class="text nav-text">Linie</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="#">
+                            <i class="bx bx-trending-up icon"></i>
+                            <span class="text nav-text">Krzywe</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="#">
+                            <i class="bx bx-redo icon"></i>
+                            <span class="text nav-text">Ścieżki</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="#">
+                            <i class="bx bx-circle icon"></i>
+                            <span class="text nav-text">Kształty</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="#">
+                            <i class="bx bx-palette icon"></i>
+                            <span class="text nav-text">Style wypełnienia</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="#">
+                            <i class="bx bx-image icon"></i>
+                            <span class="text nav-text">Obrazy</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="#">
+                            <i class="bx bx-text icon"></i>
+                            <span class="text nav-text">Tekst</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="#">
+                            <i class="bx bx-wrench icon"></i>
+                            <span class="text nav-text">Przekształcenia</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="#">
+                            <i class="bx bx-right-arrow icon"></i>
+                            <span class="text nav-text">Animacje</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="#">
+                            <i class="bx bx-pointer icon"></i>
+                            <span class="text nav-text">Wykrywanie myszy</span>
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+    <div class="main-container">
+
+        <h1>Przechwytywanie zdarzań myszki i klawiatury</h1>
+
+        <details>
+            <summary>
+                <h3>Eventy w JavaScript</h3>
+            </summary>
+            <p>
+               Javascript ma wbudowaną obsługę różnego rodzaju zdarzeń (eventów) na stronie. W przypadku canvasa interesują nas głównie eventy wywołane przez myszkę, lub czasem przez nacisinięcie odpowiedniego przycisku na klawiaturze.
+            </p>
+            <p>
+                Aby zarejestrować event, należy napisać funkcję, ktora będzie ich nasłuchiwać. Taka funkcja ma postać:<br>
+                <pre><code class="code javascript">
+target.addEventListener("type", listener, useCapture);
+                    </code></pre>
+            gdzie:<br>
+                <span class="blue-code">target</span> to odwołanie do elementu, którego dotyczy event. W naszym przypadku będzie to przechwycony wcześniej element canvas i element window<br>
+                <span class="blue-code">type</span> to interesujący nas rodzaj eventu, podawany w cudzysłowie<br>
+                <span class="blue-code">listener</span> to funkcja, która ma się wywołać po zarejestrowaniu eventu, podaje się tylko jej nazwę, lub definicję nowej funkcji<br>
+                <span class="blue-code">useCapture</span> to wartość bool, definiująca dalsze przekazywanie eventu, w gruncie rzeczy nieistotna, najczęściej ustawiona na false, lub pomijana <br>
+            </p>
+
+
+
+
+        </details>
+
+        <details>
+            <summary>
+                <h3>Zdarzenie <span class="blue-code">click</span></h3>
+            </summary>
+            <p>Jednym z częściej używanych eventów w javascript jest <span class="blue-code">click</span> używany do reagowania na kliknięcie na element LPM <br>
+            Podstawowym zastosowaniem zdarzenia <span class="blue-code">click</span> jest wykonanie prostej akcjii na stronie (np event przycisku), ale dzięki możliwości przekazania parametru do funkcji, znajduje zastosowanie również w canvasie.
+            </p>
+            <h4>Przykład:</h4>
+
+            <div class="code-presentation">
+
+                <div class="code-container">
+                    <pre><code class="code html">&lt;canvas id="myCanvas" width="300" height="300" &gt;&lt;&sol;canvas&gt;</code></pre>
+
+                    <pre><code class="code css">canvas &lcub;
+    border: 3px solid black;
+&rcub;</code></pre>
+
+                    <pre><code class="code javascript">
+
+const canvas = document.getElementById("myCanvas");
+const ctx = canvas.getContext("2d");
+
+//Ustawienie nasłuchiwania eventów
+canvas.addEventListener("click", DrawCircle, false);
+
+
+/*funkcja wywoływana po kliknięciu
+paramentr event jest to obiekt 
+przechowujący zdarzenie przekazywany z funkcji addEventListener*/
+function DrawCircle(event) {
+
+    //pobieranie relatywnej pozycji elementu canvas w oknie
+    const rect = canvas.getBoundingClientRect();
+    /*pobieranie z obiektu event całkowitych współrzędnych myszki 
+        i odjęcie od nich pozycji elementu canvas*/
+    let x = event.clientX - rect.left;
+    let y = event.clientY - rect.top;
+    //rysowanie okręgu
+    ctx.beginPath();
+    ctx.arc(x, y, 20, 0, 2 * Math.PI);
+    ctx.stroke();
+}
+
+</code></pre>
+
+                </div>
+                <div  class="code-result">
+
+                    <canvas  id="myCanvas1" width="300" height="300"></canvas>
+                    <script>
+                        const canvas = document.getElementById("myCanvas1");
+                        
+                        const ctx = canvas.getContext("2d");
+                        
+                        canvas.addEventListener("click", DrawCircle, false);
+
+                        function DrawCircle(event) {
+                            const rect = canvas.getBoundingClientRect();
+                            let x = event.clientX - rect.left;
+                            let y = event.clientY - rect.top;
+                            ctx.beginPath();
+                            ctx.arc(x, y, 20, 0, 2 * Math.PI);
+                            ctx.stroke();
+                        }
+                    </script>
+
+                </div>
+                </div>
+                <p>
+                    W powyższym przykładzie ustawiamy dla elementu canvas nasłuchiwanie eventu <span class="blue-code">click</span> i wywołanie funkcji <span class="red-code">DrawCircle</span>. 
+                    jeśli funkcja wywoływana przyjmuje argument, to addEventListener przekazuje go jako obiekt zdarzenia.
+                    <br>
+                    Obiekt każdego eventu myszy przechowuje informacje o pozycji kursora w chwili zajścia eventu. Są to właściwości <span class="blue-code">clientX</span> i <span class="blue-code">clientY</span>
+                    <br>
+                    Powyższe wartości przechowują całkowitą pozycję kursora na stronie. Aby uzyskać wartości względne do canvasa, należy odjąć od pozycji całkowitej pozycję początku canvasa.
+                    Służy do tego metoda <span class="blue-code">getBoundingClientRect()</span> i jej właściwości <span class="blue-code">top</span> i <span class="blue-code">left</span>
+                
+
+                </p>
+            
+        </details>
+
+        <details>
+            <summary>
+                <h3>Zdarzenie <span class="blue-code">mousemove</span></h3>
+            </summary>
+            <p>Kolejnym przydatnym eventem jest  <span class="blue-code">mousemove</span>, który jak sama nazwa wskazuje, wywołanywany jest gdy poruszamy myszką po elemencie </p>
+            <h4>Przykład</h4>
+            <div class="code-presentation">
+
+                <div class="code-container">
+                    <pre><code class="code html">&lt;canvas id="myCanvas" width="300" height="300" &gt;&lt;&sol;canvas&gt;</code></pre>
+
+                    <pre><code class="code css">canvas &lcub;
+    border: 3px solid black;
+&rcub;</code></pre>
+
+                    <pre><code class="code javascript">
+
+const canvas = document.getElementById("myCanvas");
+const ctx = canvas.getContext("2d");
+
+//Ustawienie nasłuchiwania eventów
+canvas.addEventListener("click", DrawCircle, false);
+
+
+/*funkcja wywoływana po najechaniu kursorem*/
+function DrawCircle(event) {
+
+    //pobieranie relatywnej pozycji elementu canvas w oknie
+    const rect = canvas.getBoundingClientRect();
+    /*pobieranie z obiektu event całkowitych współrzędnych myszki 
+        i odjęcie od nich pozycji elementu canvas*/
+    let x = event.clientX - rect.left;
+    let y = event.clientY - rect.top;
+    //rysowanie okręgu
+    ctx.beginPath();
+    ctx.arc(x, y, 20, 0, 2 * Math.PI);
+    ctx.stroke();
+}
+
+</code></pre>
+
+                </div>
+                <div  class="code-result">
+
+                    <canvas  id="myCanvas2" width="300" height="300"></canvas>
+                    <script>
+                        const canvas2 = document.getElementById("myCanvas2");
+                        
+                        const ctx2 = canvas2.getContext("2d");
+                        
+                        canvas2.addEventListener("mousemove", DrawCircle, false);
+
+                        function DrawCircle(event) {
+                            const rect = canvas2.getBoundingClientRect();
+                            let x = event.clientX - rect.left;
+                            let y = event.clientY - rect.top;
+                            ctx2.beginPath();
+                            ctx2.arc(x, y, 20, 0, 2 * Math.PI);
+                            ctx2.stroke();
+                        }
+                    </script>
+
+                </div>
+                </div>
+                <p>W tym przykładzie zmieniamy tylko typ eventu z <span class="blue-code">click</span> na <span class="blue-code">mousemove</span></p>
+        </details>
+
+        <details>
+            <summary>
+                <h3>Event <span class="blue-code">keydown</span></h3>
+            </summary>
+            <p>Event <span class="blue-code">keydown</span> jest elementem klawiatury. Reaguje na wciśnięcie dowolnego klawisza i wywołuje się do póki jest wciśniety
+                <br>Obiekt zdarzenia klawiatury przechowuje min informacje o kodzie wciśniętego klawisza.
+            </p>
+            <h4>Przykład:</h4>
+            <div class="code-presentation">
+
+                <div class="code-container">
+                    <pre><code class="code html">&lt;canvas id="myCanvas" width="300" height="300" &gt;&lt;&sol;canvas&gt;</code></pre>
+
+                    <pre><code class="code css">canvas &lcub;
+    border: 3px solid black;
+&rcub;</code></pre>
+
+                    <pre><code class="code javascript">
+
+const canvas = document.getElementById("myCanvas");
+const ctx = canvas.getContext("2d");
+
+//Ustawienie początkowej pozycji na środek ekranu
+let x = Math.floor(canvas.width/2);
+let y = Math.floor(canvas.height/2);
+
+
+//Ustawienie nasłuchiwania eventu dla okna przeglądarki
+window.addEventListener("keydown", DrawCircle, false);
+
+
+/*funkcja wywoływana po naciśnięciu klawisza na klawiaturze*/
+function DrawCircle(event) {
+          
+/*Sprawdzanie jaki klawisz został wciśnięty
+i zmiana współrzędnych okręgu */
+    if(event.key == "w") {
+        y-=4;
+    }  else if (event.key == "s") {
+        y+=4;
+    }   else if (event.key == "a") {
+        x-=4;
+    }   else if (event.key == "d") {
+        x+=4;
+    } else {
+        return;
+    }     
+    
+
+    ctx.beginPath();
+    ctx.arc(x, y, 20, 0, 2 * Math.PI);
+    ctx.stroke();
+}
+
+</code></pre>
+
+                </div>
+                <div  class="code-result">
+
+                    <canvas  id="myCanvas3" width="300" height="300"></canvas>
+                    <script>
+                        
+                        const canvas3 = document.getElementById("myCanvas3");
+
+                        
+                        let x = Math.floor(canvas3.width/2);
+                        let y = Math.floor(canvas3.height/2);
+                        const ctx3 = canvas3.getContext("2d");
+                        ctx3.beginPath();
+                            ctx3.arc(x, y, 20, 0, 2 * Math.PI);
+                            ctx3.stroke();
+            
+                        window.addEventListener("keydown", DrawCircle, false);
+
+                        function DrawCircle(event) {
+                           
+                            if(event.key == "w") {
+                                y-=4;
+                            }  else if (event.key == "s") {
+                                y+=4;
+                            }   else if (event.key == "a") {
+                                x-=4;
+                            }   else if (event.key == "d") {
+                                x+=4;
+                            }    else {
+                                return;
+                            } 
+                            
+                    
+                            
+                            ctx3.beginPath();
+                            ctx3.arc(x, y, 20, 0, 2 * Math.PI);
+                            ctx3.stroke();
+                        }
+                    </script>
+
+                </div>
+                </div>
+                <p>W tym porzykładzie reagujemy na  naciśnięcie przycisku na klawiaturze. z racji iż nie jest to event myszy, funkcje nasłuchującą umieszczamy w elemencie window.
+                    <br>Następnie sprawdzamy jaki klawisz został naciśniety za pomocą wartości <span class="blue-code">key</span> obiektu event. Właściwość <span class="blue-code">key</span> można zastąpić wartościowością <span class="blue-code">code</span> zwracającą numeryczny kod klawisza </p>
+
+
+        </details>
+
+        <details>
+            <summary>
+                <h3>Ćwiczenie</h3>
+            </summary>
+            <p>Proste ćwiczenie - tworzenie kółek w miejscu kliknięcia myszką, klikanie przycisków r,g i b na klawiaturze zmienia kolor rysowania kolejno  na czerwony, zielony i niebieski </p>
+        <div class="code-presentation" style="justify-content: center;">
+
+
+            <canvas  id="myCanvas4" width="300" height="300"></canvas>
+            <script>
+                const canvas4 = document.getElementById("myCanvas4");
+                
+                const ctx4 = canvas4.getContext("2d");
+                ctx4.strokeStyle = "blue";
+               canvas4.addEventListener("click", DrawCircle, false);
+                window.addEventListener("keydown", changeColor, false);
+
+                function changeColor(event) {
+                    switch (event.key) {
+                        case "r":
+                            ctx4.strokeStyle = "red";
+                            break;
+                        case "g":
+                            ctx4.strokeStyle = "green";
+                            break;
+                        case "b":
+                            ctx4.strokeStyle = "blue";
+                            break;
+                    }
+                }
+
+                function DrawCircle(event) {
+                    const rect = canvas4.getBoundingClientRect();
+                    let x = event.clientX - rect.left;
+                    let y = event.clientY - rect.top;
+                    ctx4.beginPath();
+                    ctx4.arc(x, y, 20, 0, 2 * Math.PI);
+                    ctx4.stroke();
+                }
+            </script>
+
+        </div>
+        
+        
+        
+        
+        
+        
+        
+        
+        </details>
+
+    </div>
+
+    <script src="scripts/sidebar.js"></script>
+
+</body>
+
+</html>
