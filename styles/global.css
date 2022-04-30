@@ -2,12 +2,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap');
 
-
-
-
-
-
-
 :root {
     /* Colors */
     --body-color: #FFF;
@@ -16,6 +10,7 @@
     --primary-color-white: #F6F5FF;
     --text-color: #494949;
     --primary-padding: 8px 40px;
+    --button-bg-color:rgba(12, 12, 13, 0.1);
 
     /* Transitions */
     --tran-01: all 0.1s ease;
@@ -79,6 +74,20 @@ pre code {
     font-weight: 500;
     border-radius: 12px;
     min-width: 100px;
+}
+
+button {
+    cursor: pointer;
+    color: var(--text-color);
+    background-color: var(--button-bg-color);
+    transition: var(--tran-02);
+    border: none;
+    font-weight: 500;
+    padding: 5px;
+}
+
+button:hover {
+    background-color: var(--primary-color);
 }
 
 .main-container {
@@ -169,9 +178,6 @@ div.code-result {
     border: 1px solid rgba(0,0,0,.07);
 }
 
-
-
-
 .code-presentation .code-container pre {
     width: 100%;
 }
@@ -186,4 +192,26 @@ div.code-result {
     div.code-result {
         width: 100%;
     }
+}
+
+div.code-container.exercise {
+    display: none;
+}
+
+div.code-container.exercise + div.code-result {
+    width: 100%;
+}
+
+div.exercise-text {
+    display: inline-flex;
+    align-items: flex-start;
+    gap: 5px;
+}
+
+.default-color {
+    background-color: var(--button-bg-color);
+}
+
+.primary-color {
+    background-color: var(--primary-color);
 }

@@ -17,145 +17,112 @@
     <!-- Boxicons CSS -->
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
 
+    <!-- JS -->
+    <script src="scripts/sidebar.js" defer></script>
+    <script src="scripts/showSolution.js" defer></script>
+
     <!-- Highlight.js -->
-    <link rel="stylesheet" href="highlight/styles/atom-one-dark.min.css" />
+    <link rel="stylesheet" href="highlight/styles/atom-one-dark.min.css">
     <script src="highlight/highlight.min.js"></script>
     <script>hljs.highlightAll();</script>
 
     <style>
         canvas {
-            width: 300px;
-            height: 300px;
             border: 3px solid black;
         }
     </style>
-
 </head>
 
 <body>
-
     <nav class="sidebar close">
-
         <header>
-
             <div class="image-text">
-
                 <span class="image">
                     <a href="index.html">
                         <img src="images/logo.png" alt="Logo">
                     </a>
                 </span>
-
                 <div class="text header-text">
-
                     <span class="name">
-                        <a href="index.html">
-                            HTML Canvas
-                        </a>
+                        <a href="index.html">HTML Canvas</a>
                     </span>
-
                     <span class="description">
-                        <a href="index.html">
-                            Poradnik
-                        </a>
+                        <a href="index.html">Poradnik</a>
                     </span>
-
                 </div>
-
             </div>
-
             <i class="bx bx-chevron-right toggle"></i>
-
         </header>
-
         <div class="menu-bar">
-
             <div class="menu">
-
                 <ul class="menu-links">
-
                     <li class="nav-link">
                         <a href="lines.html">
                             <i class="bx bx-right-arrow-alt icon"></i>
                             <span class="text nav-text">Linie</span>
                         </a>
                     </li>
-
                     <li class="nav-link">
                         <a href="#">
                             <i class="bx bx-trending-up icon"></i>
                             <span class="text nav-text">Krzywe</span>
                         </a>
                     </li>
-
                     <li class="nav-link">
                         <a href="#">
                             <i class="bx bx-redo icon"></i>
                             <span class="text nav-text">Ścieżki</span>
                         </a>
                     </li>
-
                     <li class="nav-link">
                         <a href="#">
                             <i class="bx bx-circle icon"></i>
                             <span class="text nav-text">Kształty</span>
                         </a>
                     </li>
-
                     <li class="nav-link">
                         <a href="#">
                             <i class="bx bx-palette icon"></i>
                             <span class="text nav-text">Style wypełnienia</span>
                         </a>
                     </li>
-
                     <li class="nav-link">
                         <a href="#">
                             <i class="bx bx-image icon"></i>
                             <span class="text nav-text">Obrazy</span>
                         </a>
                     </li>
-
                     <li class="nav-link">
                         <a href="#">
                             <i class="bx bx-text icon"></i>
                             <span class="text nav-text">Tekst</span>
                         </a>
                     </li>
-
                     <li class="nav-link">
                         <a href="#">
                             <i class="bx bx-wrench icon"></i>
                             <span class="text nav-text">Przekształcenia</span>
                         </a>
                     </li>
-
                     <li class="nav-link">
                         <a href="#">
                             <i class="bx bx-right-arrow icon"></i>
                             <span class="text nav-text">Animacje</span>
                         </a>
                     </li>
-
                     <li class="nav-link">
                         <a href="events.html">
                             <i class="bx bx-pointer icon"></i>
                             <span class="text nav-text">Eventy</span>
                         </a>
                     </li>
-
                 </ul>
-
             </div>
-
         </div>
-
     </nav>
 
     <div class="main-container">
-
         <h1>Linie</h1>
-
         <details>
             <summary>
                 <h3>Linia</h3>
@@ -169,77 +136,239 @@
             </p>
 
             <div class="code-presentation">
-
                 <div class="code-container">
-                    <pre><code class="code html">&lt;canvas id="myCanvas"&gt;&lt;&sol;canvas&gt;</code></pre>
-
+                    <pre><code class="code html">&lt;canvas id="firstCanvas" width="300px" height="300px"&gt;&lt;&sol;canvas&gt;</code></pre>
                     <pre><code class="code css">canvas &lcub;
-    width: 300px;
-    height: 300px;
     border: 3px solid black;
 &rcub;</code></pre>
-
-                    <pre><code class="code javascript">const canvas = document.getElementById("myCanvas");
+                    <pre><code class="code javascript">const canvas = document.getElementById("firstCanvas");
 const ctx = canvas.getContext("2d");
         
 ctx.beginPath();
 ctx.moveTo(50, 75);
-ctx.lineTo(250, 75);
+ctx.lineTo(250, 250);
 ctx.stroke();</code></pre>
-
                 </div>
-
                 <div class="code-result">
-
-                    <canvas id="myCanvas"></canvas>
+                    <canvas id="firstCanvas" width="300px" height="300px"></canvas>
                     <script>
-                        
-                        const canvas = document.getElementById("myCanvas");
-                        const ctx = canvas.getContext("2d");
-                        
-                        ctx.beginPath();
-                        ctx.moveTo(50, 75);
-                        ctx.lineTo(250, 75);
-                        ctx.stroke();
+                        const firstCanvas = document.getElementById("firstCanvas");
+                        const firstCtx = firstCanvas.getContext("2d");
+
+                        firstCtx.beginPath();
+                        firstCtx.moveTo(50, 75);
+                        firstCtx.lineTo(250, 250);
+                        firstCtx.stroke();
                     </script>
-
                 </div>
-
             </div>
-
         </details>
 
         <details>
             <summary>
                 <h3>Szerokość linii</h3>
             </summary>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis sapiente similique, nesciunt excepturi sint repellat? Porro quod sunt, minima voluptatibus, nam est nobis temporibus aliquam laudantium doloremque voluptates alias ratione.</p>
+            <p>Aby zdefiniować szerokość linii, używamy właściwości <span class="grey-code">lineWidth</span>. Ta właściwość musi być ustawiona przed wywołaniem metody <span class="blue-code">stroke</span><span class="grey-code">()</span>.</p>
+
+            <div class="code-presentation">
+                <div class="code-container">
+                    <pre><code class="code html">&lt;canvas id="secondCanvas" width="300px" height="300px"&gt;&lt;&sol;canvas&gt;</code></pre>
+                    <pre><code class="code css">canvas &lcub;
+    border: 3px solid black;
+&rcub;</code></pre>
+                    <pre><code class="code javascript">const canvas = document.getElementById("secondCanvas");
+const ctx = canvas.getContext("2d");
+        
+ctx.beginPath();
+ctx.moveTo(100, 150);
+ctx.lineTo(250, 50);
+ctx.lineWidth = 15;
+ctx.stroke();</code></pre>
+                </div>
+                <div class="code-result">
+                    <canvas id="secondCanvas" width="300px" height="300px"></canvas>
+                    <script>
+                        const secondCanvas = document.getElementById("secondCanvas");
+                        const secondCtx = secondCanvas.getContext("2d");
+
+                        secondCtx.beginPath();
+                        secondCtx.moveTo(100, 150);
+                        secondCtx.lineTo(250, 50);
+                        secondCtx.lineWidth = 15;
+                        secondCtx.stroke();
+                    </script>
+                </div>
+            </div>
         </details>
 
         <details>
             <summary>
                 <h3>Kolor linii</h3>
             </summary>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis sapiente similique, nesciunt excepturi sint repellat? Porro quod sunt, minima voluptatibus, nam est nobis temporibus aliquam laudantium doloremque voluptates alias ratione.</p>
+            <p>Aby ustawić kolor linii, używamy właściwości <span class="grey-code">strokeStyle</span>, którą można ustawić na nazwę koloru, taką jak red, green lub blue, wartość szesnastkową, jak #FF0000 lub #555, lub wartość RGB, na przykład rgb(255, 0, 0).</p>
+
+            <div class="code-presentation">
+                <div class="code-container">
+                    <pre><code class="code html">&lt;canvas id="thirdCanvas" width="300px" height="300px"&gt;&lt;&sol;canvas&gt;</code></pre>
+                    <pre><code class="code css">canvas &lcub;
+    border: 3px solid black;
+&rcub;</code></pre>
+                    <pre><code class="code javascript">const canvas = document.getElementById("thirdCanvas");
+const ctx = canvas.getContext("2d");
+        
+ctx.beginPath();
+ctx.moveTo(75, 200);
+ctx.lineTo(150, 50);
+ctx.lineWidth = 10;
+ctx.strokeStyle = "#ff0000";
+ctx.stroke();</code></pre>
+                </div>
+                <div class="code-result">
+                    <canvas id="thirdCanvas" width="300px" height="300px"></canvas>
+                    <script>
+                        const thirdCanvas = document.getElementById("thirdCanvas");
+                        const thirdCtx = thirdCanvas.getContext("2d");
+
+                        thirdCtx.beginPath();
+                        thirdCtx.moveTo(75, 200);
+                        thirdCtx.lineTo(150, 50);
+                        thirdCtx.lineWidth = 10;
+                        thirdCtx.strokeStyle = "#ff0000";
+                        thirdCtx.stroke();
+                    </script>
+                </div>
+            </div>
         </details>
 
         <details>
             <summary>
                 <h3>Zakończenie linii</h3>
             </summary>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis sapiente similique, nesciunt excepturi sint repellat? Porro quod sunt, minima voluptatibus, nam est nobis temporibus aliquam laudantium doloremque voluptates alias ratione.</p>
+            <p>Aby zmienić zakończenie linii, używamy właściwości <span class="grey-code">lineCap</span>. Linie mogą mieć jeden z trzech stylów: butt, round, lub square. Domyślny styl zakończenia to butt. Właściwość <span class="grey-code">lineCap</span> należy ustawić przed wywołaniem <span class="blue-code">stroke</span><span class="grey-code">()</span>.</p>
+
+            <div class="code-presentation">
+                <div class="code-container">
+                    <pre><code class="code html">&lt;canvas id="fourthCanvas" width="300px" height="300px"&gt;&lt;&sol;canvas&gt;</code></pre>
+                    <pre><code class="code css">canvas &lcub;
+    border: 3px solid black;
+&rcub;</code></pre>
+                    <pre><code class="code javascript">const canvas = document.getElementById("fourthCanvas");
+const ctx = canvas.getContext("2d");
+        
+ctx.beginPath();
+ctx.moveTo(250, 100);
+ctx.lineTo(50, 150);
+ctx.lineWidth = 10;
+ctx.strokeStyle = "green";
+ctx.lineCap = "round";
+ctx.stroke();</code></pre>
+                </div>
+                <div class="code-result">
+                    <canvas id="fourthCanvas" width="300px" height="300px"></canvas>
+                    <script>
+                        const fourthCanvas = document.getElementById("fourthCanvas");
+                        const fourthCtx = fourthCanvas.getContext("2d");
+
+                        fourthCtx.beginPath();
+                        fourthCtx.moveTo(250, 100);
+                        fourthCtx.lineTo(50, 150);
+                        fourthCtx.lineWidth = 10;
+                        fourthCtx.strokeStyle = "green";
+                        fourthCtx.lineCap = "round";
+                        fourthCtx.stroke();
+                    </script>
+                </div>
+            </div>
         </details>
 
         <details>
             <summary>
                 <h3>Ćwiczenie</h3>
             </summary>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis sapiente similique, nesciunt excepturi sint repellat? Porro quod sunt, minima voluptatibus, nam est nobis temporibus aliquam laudantium doloremque voluptates alias ratione.</p>
+            <div class="exercise-text">
+                <button class="show-solution default-color">Rozwiązanie</button>
+                <p>Stwórz dwa kwadraty w kolorze flagi Ukrainy.</p>
+            </div>
+            <div class="code-presentation">
+                <div class="code-container exercise">
+                    <pre><code class="code html">&lt;canvas id="fifthCanvas" width="300px" height="300px"&gt;&lt;&sol;canvas&gt;</code></pre>
+                    <pre><code class="code css">canvas &lcub;
+        border: 3px solid black;
+    &rcub;</code></pre>
+                    <pre><code class="code javascript">const canvas = document.getElementById("fifthCanvas");
+const ctx = canvas.getContext("2d");
+            
+ctx.beginPath();
+ctx.moveTo(50, 50);
+ctx.lineTo(250, 50);
+ctx.lineTo(250, 250);
+ctx.lineWidth = 5;
+ctx.lineCap = "round";
+ctx.strokeStyle = "#0057B7";
+ctx.stroke();
+
+ctx.beginPath();
+ctx.moveTo(250, 250);
+ctx.lineTo(50, 250);
+ctx.lineTo(50, 50);
+ctx.strokeStyle = "#FFDD00";
+ctx.stroke();
+
+ctx.beginPath();
+ctx.moveTo(75, 75);
+ctx.lineTo(225, 75);
+ctx.lineTo(225, 225);
+ctx.strokeStyle = "#FFDD00";
+ctx.stroke();
+
+ctx.beginPath();
+ctx.moveTo(225, 225);
+ctx.lineTo(75, 225);
+ctx.lineTo(75, 75);
+ctx.strokeStyle = "#0057B7";
+ctx.stroke();</code></pre>
+                </div>
+                <div class="code-result">
+                    <canvas id="fifthCanvas" width="300px" height="300px"></canvas>
+                    <script>
+                        const fifthCanvas = document.getElementById("fifthCanvas");
+                        const fifthCtx = fifthCanvas.getContext("2d");
+
+                        fifthCtx.beginPath();
+                        fifthCtx.moveTo(50, 50);
+                        fifthCtx.lineTo(250, 50);
+                        fifthCtx.lineTo(250, 250);
+                        fifthCtx.lineWidth = 5;
+                        fifthCtx.lineCap = "round";
+                        fifthCtx.strokeStyle = "#0057B7";
+                        fifthCtx.stroke();
+
+                        fifthCtx.beginPath();
+                        fifthCtx.moveTo(250, 250);
+                        fifthCtx.lineTo(50, 250);
+                        fifthCtx.lineTo(50, 50);
+                        fifthCtx.strokeStyle = "#FFDD00";
+                        fifthCtx.stroke();
+
+                        fifthCtx.beginPath();
+                        fifthCtx.moveTo(75, 75);
+                        fifthCtx.lineTo(225, 75);
+                        fifthCtx.lineTo(225, 225);
+                        fifthCtx.strokeStyle = "#FFDD00";
+                        fifthCtx.stroke();
+
+                        fifthCtx.beginPath();
+                        fifthCtx.moveTo(225, 225);
+                        fifthCtx.lineTo(75, 225);
+                        fifthCtx.lineTo(75, 75);
+                        fifthCtx.strokeStyle = "#0057B7";
+                        fifthCtx.stroke();
+                    </script>
+                </div>
+            </div>
         </details>
 
     </div>
-
-    <script src="scripts/sidebar.js"></script>
 
 </body>
 
