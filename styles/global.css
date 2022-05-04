@@ -90,6 +90,10 @@ button:hover {
     background-color: var(--primary-color);
 }
 
+canvas {
+    border: 3px solid black;
+}
+
 .main-container {
     position: relative;
     left: 250px;
@@ -180,18 +184,6 @@ div.code-result {
 
 .code-presentation .code-container pre {
     width: 100%;
-}
-
-@media only screen and (max-width: 800px) {
-    div.code-presentation {
-        flex-direction: column;
-    }
-    div.code-container {
-        width: 100%;
-    }
-    div.code-result {
-        width: 100%;
-    }
 }
 
 div.code-container.exercise {

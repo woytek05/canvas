@@ -9,7 +9,7 @@
     <meta name="description" content="Strona opisująca HTML Canvas">
     <meta name="keywords" content="canvas, html, css, javascript">
     <link rel="shortcut icon" href="images/logo.ico" type="image/x-icon">
-    <title>HTML Canvas | Linie</title>
+    <title>HTML Canvas | Krzywe</title>
 
     <!-- CSS -->
     <link rel="stylesheet" href="styles/index-style.css">
@@ -117,19 +117,14 @@
     </nav>
 
     <div class="main-container">
-        <h1>Linie</h1>
+        <h1>Krzywe</h1>
         <details>
             <summary>
-                <h3>Linia</h3>
+                <h3>Łuk</h3>
             </summary>
             <p>
-                Aby narysować linię, korzystamy z metod <span class="blue-code">beginPath</span><span class="grey-code">()</span>, <span class="blue-code">moveTo</span><span class="grey-code">()</span>, <span class="blue-code">lineTo</span><span class="grey-code">()</span> i <span class="blue-code">stroke</span><span class="grey-code">()</span>.
+                Aby utworzyć łuk, używamy metody <span class="blue-code">arc</span><span class="grey-code">()</span>. Łuki są definiowane przez punkt środkowy, promień, kąt początkowy, kąt końcowy i kierunek rysowania (zgodnie lub przeciwnie do ruchu wskazówek zegara). Łuki mogą być stylizowane za pomocą właściwości <span class="grey-code">lineWidth</span>, <span class="grey-code">strokeStyle</span> i <span class="grey-code">lineCap</span>.
             </p>
-            <p>
-                Na początek używamy metody <span class="blue-code">beginPath</span><span class="grey-code">()</span>, aby utworzyć nową ścieżkę. Następnie metody <span class="blue-code">moveTo</span><span class="grey-code">()</span> do ustawienia punktu kontekstowego (tj. kursora rysowania). Potem metody <span class="blue-code">lineTo</span><span class="grey-code">()</span> do narysowania linii
-                prostej od pozycji początkowej do pozycji końcowej. Na koniec, aby linia była widoczna, ustawiamy obrys linii za pomocą metody <span class="blue-code">stroke</span><span class="grey-code">()</span>. Domyślnym kolorem obrysu jest czarny.
-            </p>
-
             <div class="code-presentation">
                 <div class="code-container">
                     <pre><code class="code html">&lt;canvas id="firstCanvas" width="300px" height="300px"&gt;&lt;&sol;canvas&gt;</code></pre>
@@ -139,9 +134,17 @@
                     <pre><code class="code javascript">const canvas = document.getElementById("firstCanvas");
 const ctx = canvas.getContext("2d");
         
+let x = canvas.width / 2;
+let y = canvas.height / 2;
+let radius = 75;
+let startAngle = 1.1 * Math.PI;
+let endAngle = 1.9 * Math.PI;
+let counterClockwise = false;
+
 ctx.beginPath();
-ctx.moveTo(50, 75);
-ctx.lineTo(250, 250);
+ctx.arc(x, y, radius, startAngle, endAngle, counterClockwise);
+ctx.lineWidth = 15;
+ctx.strokeStyle = "black";
 ctx.stroke();</code></pre>
                 </div>
                 <div class="code-result">
@@ -149,10 +152,17 @@ ctx.stroke();</code></pre>
                     <script>
                         const firstCanvas = document.getElementById("firstCanvas");
                         const firstCtx = firstCanvas.getContext("2d");
+                        let x = firstCanvas.width / 2;
+                        let y = firstCanvas.height / 2;
+                        let radius = 75;
+                        let startAngle = 1.1 * Math.PI;
+                        let endAngle = 1.9 * Math.PI;
+                        let counterClockwise = false;
 
                         firstCtx.beginPath();
-                        firstCtx.moveTo(50, 75);
-                        firstCtx.lineTo(250, 250);
+                        firstCtx.arc(x, y, radius, startAngle, endAngle, counterClockwise);
+                        firstCtx.lineWidth = 15;
+                        firstCtx.strokeStyle = "black";
                         firstCtx.stroke();
                     </script>
                 </div>
@@ -161,7 +171,7 @@ ctx.stroke();</code></pre>
 
         <details>
             <summary>
-                <h3>Szerokość linii</h3>
+                <h3>Parabola</h3>
             </summary>
             <p>Aby zdefiniować szerokość linii, używamy właściwości <span class="grey-code">lineWidth</span>. Ta właściwość musi być ustawiona przed wywołaniem metody <span class="blue-code">stroke</span><span class="grey-code">()</span>.</p>
 
