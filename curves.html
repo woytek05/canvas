@@ -122,9 +122,19 @@
             <summary>
                 <h3>Łuk</h3>
             </summary>
-            <p>
-                Aby utworzyć łuk, używamy metody <span class="blue-code">arc</span><span class="grey-code">()</span>. Łuki są definiowane przez punkt środkowy, promień, kąt początkowy, kąt końcowy i kierunek rysowania (zgodnie lub przeciwnie do ruchu wskazówek zegara). Łuki mogą być stylizowane za pomocą właściwości <span class="grey-code">lineWidth</span>, <span class="grey-code">strokeStyle</span> i <span class="grey-code">lineCap</span>.
-            </p>
+
+            <p>Aby utworzyć łuk, używamy metody <span class="blue-code">arc</span><span class="grey-code">()</span>. Łuki są definiowane przez punkt środkowy, promień, kąt początkowy, kąt końcowy i kierunek rysowania (zgodnie lub przeciwnie do ruchu wskazówek zegara). Łuki mogą być stylizowane za pomocą właściwości <span class="grey-code">lineWidth</span>, <span class="grey-code">strokeStyle</span> i <span class="grey-code">lineCap</span>.</p>
+
+            <div class="photo">
+                <img src="images/arc.png" alt="Łuk">
+            </div>
+
+            <p>Łuk to nic innego jak wycinek obwodu koła. Ten okrąg definiujemy przez x, y i promień.
+
+            Następnie definiujemy sam łuk za pomocą dwóch punktów na obwodzie okręgu zdefiniowanego przez startAngle i endAngle. Te dwa kąty są określone w radianach i tworzą linie wychodzące ze środka okręgu i przecinające końce łuku, który chcemy utworzyć.
+                
+            Ostatnim argumentem metody <span class="blue-code">arc</span><span class="grey-code">()</span> jest <span class="grey-code">antiClockwise</span>, który określa kierunek ścieżki łuku między dwoma jej punktami końcowymi. Ten argument ma domyślną wartość false, co powoduje, że łuk jest rysowany zgodnie z ruchem wskazówek zegara.</p>
+
             <div class="code-presentation">
                 <div class="code-container">
                     <pre><code class="code html">&lt;canvas id="firstCanvas" width="300px" height="300px"&gt;&lt;&sol;canvas&gt;</code></pre>
@@ -173,7 +183,13 @@ ctx.stroke();</code></pre>
             <summary>
                 <h3>Parabola</h3>
             </summary>
-            <p>Aby zdefiniować szerokość linii, używamy właściwości <span class="grey-code">lineWidth</span>. Ta właściwość musi być ustawiona przed wywołaniem metody <span class="blue-code">stroke</span><span class="grey-code">()</span>.</p>
+            <p>Aby utworzyć parabolę, używamy metody <span class="blue-code">quadraticCurveTo</span><span class="grey-code">()</span>. Parabole są definiowane przez punkt kontekstowy, punkt kontrolny i punkt końcowy. Można je stylizować za pomocą właściwości <span class="grey-code">lineWidth</span>, <span class="grey-code">strokeStyle</span> i <span class="grey-code">lineCap</span>.</p>
+
+            <div class="photo">
+                <img src="images/quadratic-curve.png" alt="Parabola">
+            </div>
+
+            <p>Punkt kontrolny definiuje krzywiznę paraboli, tworząc dwie linie styczne, które są połączone z punktem kontekstowym i punktem końcowym. Punkt kontekstu jest definiowany przez metodę <span class="blue-code">moveTo</span><span class="grey-code">()</span>. Przesunięcie punktu kontrolnego dalej od punktu kontekstu i punktu końcowego spowoduje utworzenie ostrzejszych krzywych, a przesunięcie punktu kontrolnego bliżej punktu kontekstu i punktu końcowego stworzy szersze krzywe.</p>
 
             <div class="code-presentation">
                 <div class="code-container">
@@ -185,9 +201,11 @@ ctx.stroke();</code></pre>
 const ctx = canvas.getContext("2d");
         
 ctx.beginPath();
-ctx.moveTo(100, 150);
-ctx.lineTo(250, 50);
-ctx.lineWidth = 15;
+ctx.moveTo(75, 150);
+ctx.quadraticCurveTo(150, 30, 225, 150);
+ctx.lineWidth = 10;
+
+ctx.strokeStyle = "black";
 ctx.stroke();</code></pre>
                 </div>
                 <div class="code-result">
@@ -197,9 +215,11 @@ ctx.stroke();</code></pre>
                         const secondCtx = secondCanvas.getContext("2d");
 
                         secondCtx.beginPath();
-                        secondCtx.moveTo(100, 150);
-                        secondCtx.lineTo(250, 50);
-                        secondCtx.lineWidth = 15;
+                        secondCtx.moveTo(75, 150);
+                        secondCtx.quadraticCurveTo(150, 30, 225, 150);
+                        secondCtx.lineWidth = 10;
+
+                        secondCtx.strokeStyle = "black";
                         secondCtx.stroke();
                     </script>
                 </div>

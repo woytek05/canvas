@@ -207,3 +207,14 @@ div.exercise-text {
 .primary-color {
     background-color: var(--primary-color);
 }
+
+img {
+    width: min(450px, 100%);
+}
+
+div.photo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
