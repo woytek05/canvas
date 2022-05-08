@@ -324,33 +324,11 @@ ctx.stroke();</code></pre>
                         const fifthCtx = fifthCanvas.getContext("2d");
 
                         fifthCtx.beginPath();
-                        fifthCtx.moveTo(50, 50);
-                        fifthCtx.lineTo(250, 50);
-                        fifthCtx.lineTo(250, 250);
-                        fifthCtx.lineWidth = 5;
-                        fifthCtx.lineCap = "round";
-                        fifthCtx.strokeStyle = "#0057B7";
-                        fifthCtx.stroke();
-
-                        fifthCtx.beginPath();
-                        fifthCtx.moveTo(250, 250);
-                        fifthCtx.lineTo(50, 250);
-                        fifthCtx.lineTo(50, 50);
-                        fifthCtx.strokeStyle = "#FFDD00";
-                        fifthCtx.stroke();
-
-                        fifthCtx.beginPath();
-                        fifthCtx.moveTo(75, 75);
-                        fifthCtx.lineTo(225, 75);
-                        fifthCtx.lineTo(225, 225);
-                        fifthCtx.strokeStyle = "#FFDD00";
-                        fifthCtx.stroke();
-
-                        fifthCtx.beginPath();
-                        fifthCtx.moveTo(225, 225);
-                        fifthCtx.lineTo(75, 225);
-                        fifthCtx.lineTo(75, 75);
-                        fifthCtx.strokeStyle = "#0057B7";
+                        fifthCtx.moveTo(30, 30);
+                        fifthCtx.lineTo(90, 150);
+                        fifthCtx.quadraticCurveTo(120, 30, 150, 150);
+                        fifthCtx.bezierCurveTo(210,180,240,210,150,240);
+                        fifthCtx.lineWidth = 10;
                         fifthCtx.stroke();
                     </script>
                 </div>
