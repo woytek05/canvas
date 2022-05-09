@@ -9,5 +9,5 @@ button.addEventListener("click", () => {
     } else {
         button.classList.remove("primary-color");
         button.classList.add("default-color");
-    }
+    }  
 })

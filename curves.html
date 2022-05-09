@@ -122,9 +122,19 @@
             <summary>
                 <h3>Łuk</h3>
             </summary>
-            <p>
-                Aby utworzyć łuk, używamy metody <span class="blue-code">arc</span><span class="grey-code">()</span>. Łuki są definiowane przez punkt środkowy, promień, kąt początkowy, kąt końcowy i kierunek rysowania (zgodnie lub przeciwnie do ruchu wskazówek zegara). Łuki mogą być stylizowane za pomocą właściwości <span class="grey-code">lineWidth</span>, <span class="grey-code">strokeStyle</span> i <span class="grey-code">lineCap</span>.
-            </p>
+
+            <p>Aby utworzyć łuk, używamy metody <span class="blue-code">arc</span><span class="grey-code">()</span>. Łuki są definiowane przez punkt środkowy, promień, kąt początkowy, kąt końcowy i kierunek rysowania (zgodnie lub przeciwnie do ruchu wskazówek zegara). Łuki mogą być stylizowane za pomocą właściwości <span class="grey-code">lineWidth</span>, <span class="grey-code">strokeStyle</span> i <span class="grey-code">lineCap</span>.</p>
+
+            <div class="photo">
+                <img src="images/arc.png" alt="Łuk">
+            </div>
+
+            <p>Łuk to nic innego jak wycinek obwodu koła. Ten okrąg definiujemy przez x, y i promień.
+
+            Następnie definiujemy sam łuk za pomocą dwóch punktów na obwodzie okręgu zdefiniowanego przez startAngle i endAngle. Te dwa kąty są określone w radianach i tworzą linie wychodzące ze środka okręgu i przecinające końce łuku, który chcemy utworzyć.
+                
+            Ostatnim argumentem metody <span class="blue-code">arc</span><span class="grey-code">()</span> jest <span class="grey-code">antiClockwise</span>, który określa kierunek ścieżki łuku między dwoma jej punktami końcowymi. Ten argument ma domyślną wartość false, co powoduje, że łuk jest rysowany zgodnie z ruchem wskazówek zegara.</p>
+
             <div class="code-presentation">
                 <div class="code-container">
                     <pre><code class="code html">&lt;canvas id="firstCanvas" width="300px" height="300px"&gt;&lt;&sol;canvas&gt;</code></pre>
@@ -173,7 +183,13 @@ ctx.stroke();</code></pre>
             <summary>
                 <h3>Parabola</h3>
             </summary>
-            <p>Aby zdefiniować szerokość linii, używamy właściwości <span class="grey-code">lineWidth</span>. Ta właściwość musi być ustawiona przed wywołaniem metody <span class="blue-code">stroke</span><span class="grey-code">()</span>.</p>
+            <p>Aby utworzyć parabolę, używamy metody <span class="blue-code">quadraticCurveTo</span><span class="grey-code">()</span>. Parabole są definiowane przez punkt kontekstowy, punkt kontrolny i punkt końcowy. Można je stylizować za pomocą właściwości <span class="grey-code">lineWidth</span>, <span class="grey-code">strokeStyle</span> i <span class="grey-code">lineCap</span>.</p>
+
+            <div class="photo">
+                <img src="images/quadratic-curve.png" alt="Parabola">
+            </div>
+
+            <p>Punkt kontrolny definiuje krzywiznę paraboli, tworząc dwie linie styczne, które są połączone z punktem kontekstowym i punktem końcowym. Punkt kontekstu jest definiowany przez metodę <span class="blue-code">moveTo</span><span class="grey-code">()</span>. Przesunięcie punktu kontrolnego dalej od punktu kontekstu i punktu końcowego spowoduje utworzenie ostrzejszych krzywych, a przesunięcie punktu kontrolnego bliżej punktu kontekstu i punktu końcowego stworzy szersze krzywe.</p>
 
             <div class="code-presentation">
                 <div class="code-container">
@@ -185,9 +201,10 @@ ctx.stroke();</code></pre>
 const ctx = canvas.getContext("2d");
         
 ctx.beginPath();
-ctx.moveTo(100, 150);
-ctx.lineTo(250, 50);
-ctx.lineWidth = 15;
+ctx.moveTo(75, 150);
+ctx.quadraticCurveTo(150, 30, 225, 150);
+ctx.lineWidth = 10;
+ctx.strokeStyle = "black";
 ctx.stroke();</code></pre>
                 </div>
                 <div class="code-result">
@@ -197,9 +214,11 @@ ctx.stroke();</code></pre>
                         const secondCtx = secondCanvas.getContext("2d");
 
                         secondCtx.beginPath();
-                        secondCtx.moveTo(100, 150);
-                        secondCtx.lineTo(250, 50);
-                        secondCtx.lineWidth = 15;
+                        secondCtx.moveTo(75, 150);
+                        secondCtx.quadraticCurveTo(150, 30, 225, 150);
+                        secondCtx.lineWidth = 10;
+
+                        secondCtx.strokeStyle = "black";
                         secondCtx.stroke();
                     </script>
                 </div>
@@ -208,9 +227,15 @@ ctx.stroke();</code></pre>
 
         <details>
             <summary>
-                <h3>Kolor linii</h3>
+                <h3>Krzywa Beziera</h3>
             </summary>
-            <p>Aby ustawić kolor linii, używamy właściwości <span class="grey-code">strokeStyle</span>, którą można ustawić na nazwę koloru, taką jak red, green lub blue, wartość szesnastkową, jak #FF0000 lub #555, lub wartość RGB, na przykład rgb(255, 0, 0).</p>
+            <p>Aby utworzyć krzywą Beziera, używamy metody <span class="blue-code">bezierCurveTo</span><span class="grey-code">()</span>. Krzywe Beziera są definiowane za pomocą punktu kontekstowego, dwóch punktów kontrolnych i punktu końcowego. W przeciwieństwie do paraboli, krzywe Beziera są definiowane za pomocą dwóch punktów kontrolnych zamiast jednego, co pozwala nam tworzyć bardziej złożone krzywizny. Krzywe Beziera można stylizować za pomocą właściwości <span class="grey-code">lineWidth</span>, <span class="grey-code">strokeStyle</span> i <span class="grey-code">lineCap</span>.</p>
+
+            <div class="photo">
+                <img src="images/bezier-curve.png" alt="Krzywa Beziera">
+            </div>
+
+            <p>Krzywa Beziera jest zdefiniowana przez bieżący punkt kontekstu, dwa punkty kontrolne i punkt końcowy. Pierwsza część krzywej jest styczna do linii zdefiniowanej przez punkt kontekstowy i pierwszy punkt kontrolny. Druga część krzywej jest styczna do linii określonej przez drugi punkt kontrolny i punkt końcowy.</p>
 
             <div class="code-presentation">
                 <div class="code-container">
@@ -222,10 +247,10 @@ ctx.stroke();</code></pre>
 const ctx = canvas.getContext("2d");
         
 ctx.beginPath();
-ctx.moveTo(75, 200);
-ctx.lineTo(150, 50);
+ctx.moveTo(30, 210);
+ctx.bezierCurveTo(60, 60, 270, 60, 240, 210);
 ctx.lineWidth = 10;
-ctx.strokeStyle = "#ff0000";
+ctx.strokeStyle = "black";
 ctx.stroke();</code></pre>
                 </div>
                 <div class="code-result">
@@ -235,52 +260,11 @@ ctx.stroke();</code></pre>
                         const thirdCtx = thirdCanvas.getContext("2d");
 
                         thirdCtx.beginPath();
-                        thirdCtx.moveTo(75, 200);
-                        thirdCtx.lineTo(150, 50);
+                        thirdCtx.moveTo(30, 210);
+                        thirdCtx.bezierCurveTo(60, 60, 270, 60, 240, 210);
                         thirdCtx.lineWidth = 10;
-                        thirdCtx.strokeStyle = "#ff0000";
+                        thirdCtx.strokeStyle = 'black';
                         thirdCtx.stroke();
-                    </script>
-                </div>
-            </div>
-        </details>
-
-        <details>
-            <summary>
-                <h3>Zakończenie linii</h3>
-            </summary>
-            <p>Aby zmienić zakończenie linii, używamy właściwości <span class="grey-code">lineCap</span>. Linie mogą mieć jeden z trzech stylów: butt, round, lub square. Domyślny styl zakończenia to butt. Właściwość <span class="grey-code">lineCap</span> należy ustawić przed wywołaniem <span class="blue-code">stroke</span><span class="grey-code">()</span>.</p>
-
-            <div class="code-presentation">
-                <div class="code-container">
-                    <pre><code class="code html">&lt;canvas id="fourthCanvas" width="300px" height="300px"&gt;&lt;&sol;canvas&gt;</code></pre>
-                    <pre><code class="code css">canvas &lcub;
-    border: 3px solid black;
-&rcub;</code></pre>
-                    <pre><code class="code javascript">const canvas = document.getElementById("fourthCanvas");
-const ctx = canvas.getContext("2d");
-        
-ctx.beginPath();
-ctx.moveTo(250, 100);
-ctx.lineTo(50, 150);
-ctx.lineWidth = 10;
-ctx.strokeStyle = "green";
-ctx.lineCap = "round";
-ctx.stroke();</code></pre>
-                </div>
-                <div class="code-result">
-                    <canvas id="fourthCanvas" width="300px" height="300px"></canvas>
-                    <script>
-                        const fourthCanvas = document.getElementById("fourthCanvas");
-                        const fourthCtx = fourthCanvas.getContext("2d");
-
-                        fourthCtx.beginPath();
-                        fourthCtx.moveTo(250, 100);
-                        fourthCtx.lineTo(50, 150);
-                        fourthCtx.lineWidth = 10;
-                        fourthCtx.strokeStyle = "green";
-                        fourthCtx.lineCap = "round";
-                        fourthCtx.stroke();
                     </script>
                 </div>
             </div>
@@ -292,7 +276,7 @@ ctx.stroke();</code></pre>
             </summary>
             <div class="exercise-text">
                 <button class="show-solution default-color">Rozwiązanie</button>
-                <p>Stwórz dwa kwadraty w kolorze flagi Ukrainy.</p>
+                <p>Stwórz dowolną ścieżkę składającą się z łuku, paraboli i krzywej Beziera.</p>
             </div>
             <div class="code-presentation">
                 <div class="code-container exercise">
@@ -304,33 +288,11 @@ ctx.stroke();</code></pre>
 const ctx = canvas.getContext("2d");
             
 ctx.beginPath();
-ctx.moveTo(50, 50);
-ctx.lineTo(250, 50);
-ctx.lineTo(250, 250);
-ctx.lineWidth = 5;
-ctx.lineCap = "round";
-ctx.strokeStyle = "#0057B7";
-ctx.stroke();
-
-ctx.beginPath();
-ctx.moveTo(250, 250);
-ctx.lineTo(50, 250);
-ctx.lineTo(50, 50);
-ctx.strokeStyle = "#FFDD00";
-ctx.stroke();
-
-ctx.beginPath();
-ctx.moveTo(75, 75);
-ctx.lineTo(225, 75);
-ctx.lineTo(225, 225);
-ctx.strokeStyle = "#FFDD00";
-ctx.stroke();
-
-ctx.beginPath();
-ctx.moveTo(225, 225);
-ctx.lineTo(75, 225);
-ctx.lineTo(75, 75);
-ctx.strokeStyle = "#0057B7";
+ctx.moveTo(30, 30);
+ctx.lineTo(90, 150);
+ctx.quadraticCurveTo(120, 30, 150, 150);
+ctx.bezierCurveTo(210, 180, 240, 210, 150, 240);
+ctx.lineWidth = 10;
 ctx.stroke();</code></pre>
                 </div>
                 <div class="code-result">
@@ -340,33 +302,11 @@ ctx.stroke();</code></pre>
                         const fifthCtx = fifthCanvas.getContext("2d");
 
                         fifthCtx.beginPath();
-                        fifthCtx.moveTo(50, 50);
-                        fifthCtx.lineTo(250, 50);
-                        fifthCtx.lineTo(250, 250);
-                        fifthCtx.lineWidth = 5;
-                        fifthCtx.lineCap = "round";
-                        fifthCtx.strokeStyle = "#0057B7";
-                        fifthCtx.stroke();
-
-                        fifthCtx.beginPath();
-                        fifthCtx.moveTo(250, 250);
-                        fifthCtx.lineTo(50, 250);
-                        fifthCtx.lineTo(50, 50);
-                        fifthCtx.strokeStyle = "#FFDD00";
-                        fifthCtx.stroke();
-
-                        fifthCtx.beginPath();
-                        fifthCtx.moveTo(75, 75);
-                        fifthCtx.lineTo(225, 75);
-                        fifthCtx.lineTo(225, 225);
-                        fifthCtx.strokeStyle = "#FFDD00";
-                        fifthCtx.stroke();
-
-                        fifthCtx.beginPath();
-                        fifthCtx.moveTo(225, 225);
-                        fifthCtx.lineTo(75, 225);
-                        fifthCtx.lineTo(75, 75);
-                        fifthCtx.strokeStyle = "#0057B7";
+                        fifthCtx.moveTo(30, 30);
+                        fifthCtx.lineTo(90, 150);
+                        fifthCtx.quadraticCurveTo(120, 30, 150, 150);
+                        fifthCtx.bezierCurveTo(210, 180, 240, 210, 150, 240);
+                        fifthCtx.lineWidth = 10;
                         fifthCtx.stroke();
                     </script>
                 </div>

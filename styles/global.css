@@ -30,7 +30,7 @@
 body {
     height: 100vh;
     background-color: var(--body-color);
-    min-width: 455px;
+    min-width: 460px;
 }
 
 h1 {
@@ -206,4 +206,15 @@ div.exercise-text {
 
 .primary-color {
     background-color: var(--primary-color);
+}
+
+img {
+    width: min(450px, 100%);
+}
+
+div.photo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
 }
