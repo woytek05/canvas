@@ -30,7 +30,7 @@
 body {
     height: 100vh;
     background-color: var(--body-color);
-    min-width: 455px;
+    min-width: 460px;
 }
 
 h1 {
