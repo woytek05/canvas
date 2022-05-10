@@ -1,20 +1,14 @@
 const codePresentations = document.querySelectorAll("div.code-presentation");
 const codeContainers = document.querySelectorAll("div.code-container");
 const codeResults = document.querySelectorAll("div.code-container:not(.exercise) + div.code-result");
-const exerciseCodeResult = document.querySelector("div.code-container.exercise + div.code-result");
 
 function checkWidth() {
-    let nav = document.querySelector("nav.sidebar");
+    const nav = document.querySelector("nav.sidebar");
     if ((~nav.classList.contains("close") && window.innerWidth < 950) ||
         (nav.classList.contains("close") && window.innerWidth < 800)) {
         codePresentations.forEach(n => n.style.flexDirection = "column");
         codeContainers.forEach(n => n.style.width = "100%");
         codeResults.forEach(n => n.style.width = "100%");
-    }
-    if ((~nav.classList.contains("close") && window.innerWidth < 950) ||
-        (nav.classList.contains("close") && window.innerWidth < 800)  &&
-        button.classList.contains("primary-color")) {
-        exerciseCodeResult.style.width = "100%";
     }
     if ((~nav.classList.contains("close") && window.innerWidth >= 950) ||
         (nav.classList.contains("close") && window.innerWidth >= 800)) {
