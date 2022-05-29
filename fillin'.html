@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Jakub Noga, Wiktor Wolanin, Wojciech Wysocki">
+    <meta name="description" content="Strona opisująca HTML Canvas">
+    <meta name="keywords" content="canvas, html, css, javascript">
+    <link rel="shortcut icon" href="images/logo.ico" type="image/x-icon">
+    <title>HTML Canvas</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles/index-style.css">
+
+    <!-- Boxicons CSS -->
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+
+    <!-- Highlight.js -->
+    <link rel="stylesheet" href="highlight/styles/atom-one-dark.min.css" />
+    <script src="highlight/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+
+    <style>
+        canvas {
+            border: 3px solid black;
+
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <nav class="sidebar close">
+
+        <header>
+
+            <div class="image-text">
+
+                <span class="image">
+                    <a href="index.html">
+                        <img src="images/logo.png" alt="Logo">
+                    </a>
+                </span>
+
+                <div class="text header-text">
+
+                    <span class="name">
+                        <a href="index.html">
+                            HTML Canvas
+                        </a>
+                    </span>
+
+                    <span class="description">
+                        <a href="index.html">
+                            Poradnik
+                        </a>
+                    </span>
+
+                </div>
+
+            </div>
+
+            <i class="bx bx-chevron-right toggle"></i>
+
+        </header>
+
+        <div class="menu-bar">
+
+            <div class="menu">
+
+                <ul class="menu-links">
+
+                    <li class="nav-link">
+                        <a href="lines.html">
+                            <i class="bx bx-right-arrow-alt icon"></i>
+                            <span class="text nav-text">Linie</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="curves.html">
+                            <i class="bx bx-trending-up icon"></i>
+                            <span class="text nav-text">Krzywe</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="paths.html">
+                            <i class="bx bx-redo icon"></i>
+                            <span class="text nav-text">Ścieżki</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="shapes.html">
+                            <i class="bx bx-circle icon"></i>
+                            <span class="text nav-text">Kształty</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="fillin'.html">
+                            <i class="bx bx-palette icon"></i>
+                            <span class="text nav-text">Style wypełnienia</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="#">
+                            <i class="bx bx-image icon"></i>
+                            <span class="text nav-text">Obrazy</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="#">
+                            <i class="bx bx-text icon"></i>
+                            <span class="text nav-text">Tekst</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="#">
+                            <i class="bx bx-wrench icon"></i>
+                            <span class="text nav-text">Przekształcenia</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="#">
+                            <i class="bx bx-right-arrow icon"></i>
+                            <span class="text nav-text">Animacje</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="events.html">
+                            <i class="bx bx-pointer icon"></i>
+                            <span class="text nav-text">Wykrywanie myszy</span>
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+    <div class="main-container">
+<!-- ------------------------ HEADER ------------------------ -->
+        <h1>Style wypełnienia</h1>
+<!-- ------------------------ Pierwszy element ------------------------ -->
+        <details>
+            <summary>
+                <h3>Wypełnienie kolorem oraz obramowanie</h3>
+            </summary>
+            <p>
+                Do wypełniania kształtu jednolitym kolorem, możemy ustawić właściwość <span class="red-code">fillStyle</span> na ciąg koloru, taki jak niebieski, 
+                wartość szesnastkową, taką jak <span class="red-code">#0000FF</span>,<br> lub wartość RGB, taką jak <span class="red-code">rgb(0,0,255)</span>, 
+                a następnie możemy użyj metody <span class="blue-code">fill</span><span class="grey-code">()</span>, 
+                aby wypełnić kształt. O ile nie określono inaczej, <span class="red-code">domyślny styl wypełnienia kształtu jest czarny</span>.
+            </p>
+            <h4></h4>
+            <div class="code-presentation">
+                <div class="code-container">
+                    <pre><code class="code html">&lt;canvas  id="myCanvas2" width="300" height="300"&gt;&lt;/canvas&gt;</code></pre>
+
+                    <pre><code class="code javascript">const canvas1 = document.getElementById('myCanvas1');
+const ctx1 = canvas1.getContext('2d');
+const centerX = canvas1.width / 2;
+const centerY = canvas1.height / 2;
+const radius = 70;
+
+ctx1.beginPath();
+ctx1.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
+//dajemy kolor, którym chcemy wypełnić środek
+ctx1.fillStyle = 'blue'
+ctx1.fill();
+ctx1.lineWidth = 5;
+//dodajemy kolor obrysu
+ctx1.strokeStyle = '#ff0000'
+ctx1.stroke();</code></pre>
+                </div>
+                <div  class="code-result">
+                    <canvas  id="myCanvas1" width="300" height="300"></canvas>
+                    <script>
+                        const canvas1 = document.getElementById('myCanvas1');
+                        const ctx1 = canvas1.getContext('2d');
+                        const centerX = canvas1.width / 2;
+                        const centerY = canvas1.height / 2;
+                        const radius = 70;
+
+                        ctx1.beginPath();
+                        ctx1.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
+                        ctx1.fillStyle = 'blue'
+                        ctx1.fill();
+                        ctx1.lineWidth = 5;
+                        ctx1.strokeStyle = '#ff0000'
+                        ctx1.stroke();
+                    </script>
+
+                </div>
+            </div>
+            <p>
+                Do wypełnienia obramowania kształtu używamy komendy <span class="blue-code">strokeStyle</span><span class="grey-code">()</span> i podajemy wartość,
+                a następnie używamy komendy <span class="blue-code">stroke</span><span class="grey-code">()</span>. Warto pamiętać aby funkcję
+                powyższą funkcję stosować po funkcji <span class="blue-code">fill</span><span class="grey-code">()</span>. W przeciwnym razie wypełnienie nałoży się na połowę obrysu.
+            </p>
+        </details>
+<!-- ------------------------ Drugi element ------------------------ -->
+        <details>
+            <summary>
+                <h3>Gradient liniowy</h3>
+            </summary>
+            <p>Aby stworzyć gradient liniowy w canvasie, możemy użyć metody <span class="blue-code">createLinearGradient</span><span class="grey-code">()</span>. <br> 
+                Gradienty liniowe są definiowane przez wyimaginowaną linię, która określa kierunek gradientu. <br>
+                Po utworzeniu gradientu możemy wstawić kolory za pomocą właściwości <span class="blue-code">addColorStop</span>.
+            </p>
+            <h4></h4>
+            <div class="code-presentation">
+                <div class="code-container">
+                    <pre><code class="code html">&lt;canvas  id="myCanvas2" width="300" height="300"&gt;&lt;/canvas&gt;</code></pre>
+
+                    <pre><code class="code javascript">const canvas2 = document.getElementById('myCanvas2');
+const ctx2 = canvas2.getContext('2d');
+ctx2.rect(0, 0, canvas2.width, canvas2.height);
+
+//Tu tworzymy gradient
+const grd = ctx2.createLinearGradient(0, 0, canvas2.width, canvas2.height);
+//dajemy kolor początkowy
+grd.addColorStop(0, '#00ffFF');   
+//dajemy kolor końcowy
+grd.addColorStop(1, 'darkblue');
+ctx2.fillStyle = grd;
+ctx2.fill();</code></pre>
+                </div>
+                <div  class="code-result">
+                    <canvas  id="myCanvas2" width="300" height="300"></canvas>
+                    <script>
+                        const canvas2 = document.getElementById('myCanvas2');
+                        const ctx2 = canvas2.getContext('2d');
+                        ctx2.rect(0, 0, canvas2.width, canvas2.height);
+
+                        //Tu tworzymy gradient
+                        const grd = ctx2.createLinearGradient(0, 0, canvas2.width, canvas2.height);
+                        //dajemy kolor początkowy
+                        grd.addColorStop(0, '#00ffFF');   
+                        //dajemy kolor końcowy
+                        grd.addColorStop(1, 'darkblue');
+                        ctx2.fillStyle = grd;
+                        ctx2.fill();
+                    </script>
+
+                </div>
+            </div>
+            <p>
+                Kierunek gradientu liniowego przesuwa się od punktu początkowego do punktu końcowego wyimaginowanej 
+                linii zdefiniowanej za pomocą metody <span class="blue-code">createLinearGradient</span><span class="grey-code">()</span>. Używamy dowolnego koloru który rozpoczyna się w punkcie początkowym gradientu i drugi kolor, który kończy się punktem końcowym. 
+                Ograniczenia kolorów są umieszczone wzdłuż wyobrażonej linii gdzieś pomiędzy 0 a 1, gdzie 0 to punkt początkowy, a 1 to punkt końcowy.
+            </p>
+        </details>
+<!-- ------------------------ trzeci element ------------------------ -->
+        <details>
+            <summary>
+                <h3>Gradient od promienia</h3>
+            </summary>
+            <p>Do stworzenia gradientu promieniowego, możemy użyć metody <span class="blue-code">createRadialGradient</span><span class="grey-code">()</span>. 
+                Gradienty promieniowe są definiowane za pomocą dwóch wyimaginowanych okręgów - okręgu początkowego i okręgu końcowego, 
+                w których gradient zaczyna się od okręgu początkowego i przesuwa się w kierunku okręgu końcowego.</p>
+            <h4>Przykład:</h4>
+            <div class="code-presentation">
+                <div class="code-container">
+                    <pre><code class="code html">&lt;canvas  id="myCanvas2" width="300" height="300"&gt;&lt;/canvas&gt;</code></pre>
+
+                    <pre><code class="code javascript">var canvas3 = document.getElementById('myCanvas3');
+var ctx3 = canvas3.getContext('2d');
+ctx3.rect(0, 0, canvas3.width, canvas3.height);
+//Odstep od lewej , odstep od gory , nasilenie koloru , promień o który okrąg się obraca, rozszerzenie okręgu o promień, promień gradientu
+var grd = ctx3.createRadialGradient(15, 200, 0, 100, 50, 300);
+grd.addColorStop(0, '#00ffff');
+grd.addColorStop(1, 'darkblue');
+
+ctx3.fillStyle = grd;
+ctx3.fill();</code></pre>
+                </div>
+                <div  class="code-result">
+                    <canvas  id="myCanvas3" width="300" height="300"></canvas>
+                    <script>
+                        var canvas3 = document.getElementById('myCanvas3');
+                        var ctx3 = canvas3.getContext('2d');
+                        ctx3.rect(0, 0, canvas3.width, canvas3.height);
+                        //Odstep od lewej , odstep od gory , nasilenie koloru , promień o który okrąg się obraca, rozszerzenie okręgu o promień, promień gradientu
+                        var grd2 = ctx3.createRadialGradient(15, 200, 0, 100, 50, 300);
+                        grd.addColorStop(0, '#00ffff');
+                        grd.addColorStop(1, 'darkblue');
+
+                        ctx3.fillStyle = grd;
+                        ctx3.fill();
+                    </script>
+                </div>
+            </div>
+            
+        </details>
+
+<!-- ------------------------ Czwarty element ------------------------ -->
+
+        <details>
+            <summary>
+                <h3>Wzór</h3>
+            </summary>
+            <p>Tworząc pattern, możemy użyć metody <span class="blue-code">createPattern</span><span class="grey-code">()</span>, 
+                która zwraca obiekt wzorca. Ustawiamy właściwość <span class="blue-code">fillStyle</span> na obiekt wzorca, 
+                a następnie wypełnić kształt za pomocą funkcji <span class="blue-code">fill</span><span class="grey-code">()</span>. 
+                <br>Metoda <span class="blue-code">createPattern</span><span class="grey-code">()</span> wymaga obiektu obrazu 
+                i opcji powtórki, którą może być <span class="red-code">repeat</span>, <span class="red-code">repeat-x</span>, <span class="red-code">repeat-y</span> lub <span class="red-code">no-repeat</span>. O ile nie określono inaczej, 
+                opcja powtarzania jest domyślnie powtarzana.</p>
+            <h4></h4>
+            <div class="code-presentation">
+                <div class="code-container">
+                    <pre><code class="code html">&lt;canvas  id="myCanvas2" width="300" height="300"&gt;&lt;/canvas&gt;</code></pre>
+
+                    <pre><code class="code javascript"></code></pre>
+                </div>
+                <div  class="code-result">
+                    <canvas  id="myCanvas4" width="300" height="300"></canvas>
+                    <script>
+                        var canvas4 = document.getElementById('myCanvas4');
+                        var ctx4 = canvas4.getContext('2d');
+
+                        var imageObj = new Image();
+                        imageObj.onload = function() {
+                        var pattern = ctx4.createPattern(imageObj, 'repeat');
+
+                        ctx4.rect(0, 0, canvas4.width, canvas4.height);
+                        ctx4.fillStyle = pattern;
+                        ctx4.fill();
+                        };
+                        imageObj.src = 'http://www.html5canvastutorials.com/demos/assets/wood-pattern.png';
+                    </script>
+
+                </div>
+            </div>
+            
+        </details>
+
+
+    </div>
+
+    <script src="scripts/sidebar.js"></script>
+
+</body>
+
+</html>

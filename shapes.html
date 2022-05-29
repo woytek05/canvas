@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Jakub Noga, Wiktor Wolanin, Wojciech Wysocki">
+    <meta name="description" content="Strona opisująca HTML Canvas">
+    <meta name="keywords" content="canvas, html, css, javascript">
+    <link rel="shortcut icon" href="images/logo.ico" type="image/x-icon">
+    <title>HTML Canvas</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles/index-style.css">
+
+    <!-- Boxicons CSS -->
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+
+    <!-- Highlight.js -->
+    <link rel="stylesheet" href="highlight/styles/atom-one-dark.min.css" />
+    <script src="highlight/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+
+    <style>
+        canvas {
+            border: 3px solid black;
+
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <nav class="sidebar close">
+
+        <header>
+
+            <div class="image-text">
+
+                <span class="image">
+                    <a href="index.html">
+                        <img src="images/logo.png" alt="Logo">
+                    </a>
+                </span>
+
+                <div class="text header-text">
+
+                    <span class="name">
+                        <a href="index.html">
+                            HTML Canvas
+                        </a>
+                    </span>
+
+                    <span class="description">
+                        <a href="index.html">
+                            Poradnik
+                        </a>
+                    </span>
+
+                </div>
+
+            </div>
+
+            <i class="bx bx-chevron-right toggle"></i>
+
+        </header>
+
+        <div class="menu-bar">
+
+            <div class="menu">
+
+                <ul class="menu-links">
+
+                    <li class="nav-link">
+                        <a href="lines.html">
+                            <i class="bx bx-right-arrow-alt icon"></i>
+                            <span class="text nav-text">Linie</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="curves.html">
+                            <i class="bx bx-trending-up icon"></i>
+                            <span class="text nav-text">Krzywe</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="paths.html">
+                            <i class="bx bx-redo icon"></i>
+                            <span class="text nav-text">Ścieżki</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="shapes.html">
+                            <i class="bx bx-circle icon"></i>
+                            <span class="text nav-text">Kształty</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="fillin'.html">
+                            <i class="bx bx-palette icon"></i>
+                            <span class="text nav-text">Style wypełnienia</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="#">
+                            <i class="bx bx-image icon"></i>
+                            <span class="text nav-text">Obrazy</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="#">
+                            <i class="bx bx-text icon"></i>
+                            <span class="text nav-text">Tekst</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="#">
+                            <i class="bx bx-wrench icon"></i>
+                            <span class="text nav-text">Przekształcenia</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="#">
+                            <i class="bx bx-right-arrow icon"></i>
+                            <span class="text nav-text">Animacje</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="events.html">
+                            <i class="bx bx-pointer icon"></i>
+                            <span class="text nav-text">Wykrywanie myszy</span>
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+    <div class="main-container">
+<!-- ------------------------ HEADER ------------------------ -->
+        <h1>Kształty</h1>
+<!-- ------------------------ Pierwszy element ------------------------ -->
+        <details>
+            <summary>
+                <h3>Niestandardowe kształty</h3>
+            </summary>
+            <p>
+                Aby utworzyć niestandardowy kształt, 
+                możemy utworzyć ścieżkę lub krzywej do skonstruowania każdej podścieżki, która tworzy nasz kształt.
+            </p>
+
+            <div class="code-presentation">
+                <div class="code-container">
+                    <pre><code class="code html">&lt;canvas  id="myCanvas2" width="300" height="300"&gt;&lt;/canvas&gt;</code></pre>
+
+                    <pre><code class="code javascript">const canvas1 = document.getElementById("myCanvas1");
+const ctx1 = canvas1.getContext("2d");
+
+ctx1.beginPath();
+ctx1.moveTo(170, 80);
+ctx1.bezierCurveTo(130, 100, 130, 150, 230, 150);
+ctx1.bezierCurveTo(250, 180, 320, 180, 340, 150);
+ctx1.bezierCurveTo(420, 150, 420, 120, 390, 100);
+ctx1.bezierCurveTo(430, 40, 370, 30, 340, 50);
+ctx1.bezierCurveTo(320, 5, 250, 20, 250, 50);
+ctx1.bezierCurveTo(200, 5, 150, 20, 170, 80);
+
+ctx1.closePath();
+ctx1.lineWidth = 5;
+ctx1.stroke();</code></pre>
+                </div>
+                <div  class="code-result">
+                    <canvas  id="myCanvas1" width="300" height="300"></canvas>
+                    <script>
+                        const canvas1 = document.getElementById("myCanvas1");
+                        const ctx1 = canvas1.getContext("2d");
+
+                        ctx1.beginPath();
+                        ctx1.moveTo(170, 80);
+                        ctx1.bezierCurveTo(130, 100, 130, 150, 230, 150);
+                        ctx1.bezierCurveTo(250, 180, 320, 180, 340, 150);
+                        ctx1.bezierCurveTo(420, 150, 420, 120, 390, 100);
+                        ctx1.bezierCurveTo(430, 40, 370, 30, 340, 50);
+                        ctx1.bezierCurveTo(320, 5, 250, 20, 250, 50);
+                        ctx1.bezierCurveTo(200, 5, 150, 20, 170, 80);
+
+                        ctx1.closePath();
+                        ctx1.lineWidth = 5;
+                        ctx1.stroke();
+                        
+                    </script>
+
+                </div>
+            </div>
+            
+        </details>
+<!-- ------------------------ Drugi element ------------------------ -->
+        <details>
+            <summary>
+                <h3>Prostokąt</h3>
+            </summary>
+            <p>Do utworzenia prostokątu, możemy użyć metody <span class="blue-code">rect</span><span class="grey-code">()</span>  zamiast konstruować kształt za pomocą 4 linii łączących. 
+                Prostokąt jest pozycjonowany za pomocą parametrów <span class="red-code">x</span> i <span class="red-code">y</span>, a jego rozmiar odpowiada parametrom szerokości i wysokości. <br>
+                Prostokąt jest umieszczony względem <span class="red-code">lewego górnego</span> rogu.
+            </p>
+            <h4>Przykład:</h4>
+
+            <div class="code-presentation">
+
+                <div class="code-container">
+                    <pre><code class="code html">&lt;canvas  id="myCanvas2" width="300" height="300"&gt;&lt;/canvas&gt;</code></pre>
+
+                    <pre><code class="code javascript">var canvas2 = document.getElementById('myCanvas2');
+var ctx2 = canvas2.getContext('2d');
+
+ctx2.beginPath();
+ctx2.rect(50, 50, 200, 100);
+ctx2.fillStyle = 'white';
+ctx2.fill();
+ctx2.lineWidth = 5;
+ctx2.strokeStyle = 'grey';
+ctx2.stroke();</code></pre>
+
+                </div>
+                <div  class="code-result">
+
+                    <canvas  id="myCanvas2" width="300" height="300"></canvas>
+                    <script>
+                        var canvas2 = document.getElementById('myCanvas2');
+                        var ctx2 = canvas2.getContext('2d');
+
+                        ctx2.beginPath();
+                        ctx2.rect(50, 50, 200, 100);
+                        ctx2.fill();
+                        ctx2.lineWidth = 5;
+                        ctx2.stroke();
+                    </script>
+                </div>
+            </div>
+            
+        </details>
+<!-- ------------------------ trzeci element ------------------------ -->
+        <details>
+            <summary>
+                <h3>Koło</h3>
+            </summary>
+            <p>Następny kształt do narysowania to koło. <br> Możemy utworzyć pełny łuk za pomocą metody <span class="blue-code">arc</span><span class="grey-code">()</span>, 
+                definiując kąt początkowy jako <span class="red-code">0</span> i kąt końcowy jako <span class="red-code">2 * PI</span>.</p>
+            <div class="code-presentation">
+                <div class="code-container">
+                    <pre><code class="code html">&lt;canvas id="myCanvas" width="300" height="300" &gt;&lt;&sol;canvas&gt;</code></pre>
+
+                    <pre><code class="code javascript">var canvas = document.getElementById('myCanvas');
+var ctx3 = canvas.getContext('2d');
+var centerX = canvas.width / 2;
+var centerY = canvas.height / 2;
+var radius = 70;
+
+ctx3.beginPath();
+ctx3.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
+ctx3.fillStyle = 'grey';
+ctx3.fill();
+ctx3.lineWidth = 5;
+ctx3.strokeStyle = 'black';
+ctx3.stroke();
+                    </code></pre>
+                </div>
+                <div  class="code-result">
+                    <canvas  id="myCanvas3" width="300" height="300"></canvas>
+                    <script>
+                        var canvas3 = document.getElementById('myCanvas3');
+                        var ctx3 = canvas3.getContext('2d');
+                        var centerX = canvas3.width / 2;
+                        var centerY = canvas3.height / 2;
+                        var radius = 70;
+
+                        ctx3.beginPath();
+                        ctx3.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
+                        ctx3.fill();
+                        ctx3.lineWidth = 5;
+                        ctx3.stroke();
+                    </script>
+                </div>
+                </div>
+        </details>
+
+<!-- ------------------------ Czwarty element ------------------------ -->
+
+        <details>
+            <summary>
+                <h3>Półkole</h3>
+            </summary>
+            <p>By stworzyć półkole, możemy utworzyć łuk za pomocą metody <span class="blue-code">arc</span><span class="gray-code">()</span> i zdefiniować kąt końcowy jako startAngle + PI.</p>
+            <h4>Poniżej przykłąd:</h4>
+            <div class="code-presentation">
+                <div class="code-container">
+                    <pre><code class="code html">&lt;canvas id="myCanvas" width="300" height="300" &gt;&lt;&sol;canvas&gt;</code></pre>
+
+                    <pre><code class="code javascript">var canvas4 = document.getElementById('myCanvas4');
+var ctx4 = canvas4.getContext('2d');
+
+ctx4.beginPath();
+ctx4.arc(150, 100, 70, 0, Math.PI, false);
+ctx4.closePath();
+ctx4.lineWidth = 5;
+ctx4.fillStyle = 'darkgray';
+ctx4.fill();
+ctx4.strokeStyle = 'black';
+ctx4.stroke();</code></pre>
+                </div>
+                <div  class="code-result">
+
+                    <canvas  id="myCanvas4" width="300" height="300"></canvas>
+                    <script>
+                        var canvas4 = document.getElementById('myCanvas4');
+                        var ctx4 = canvas4.getContext('2d');
+
+                        ctx4.beginPath();
+                        ctx4.arc(150, 100, 70, 0, Math.PI, false);
+                        ctx4.closePath();
+                        ctx4.lineWidth = 5;
+                        ctx4.fill();
+                        ctx4.stroke();
+                    </script>
+
+                </div>
+            </div>
+
+        </details>
+
+
+    </div>
+
+    <script src="scripts/sidebar.js"></script>
+
+</body>
+
+</html>
