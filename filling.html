@@ -109,14 +109,14 @@
                     </li>
 
                     <li class="nav-link">
-                        <a href="#">
+                        <a href="images.html">
                             <i class="bx bx-image icon"></i>
                             <span class="text nav-text">Obrazy</span>
                         </a>
                     </li>
 
                     <li class="nav-link">
-                        <a href="#">
+                        <a href="text.html">
                             <i class="bx bx-text icon"></i>
                             <span class="text nav-text">Tekst</span>
                         </a>
@@ -130,7 +130,7 @@
                     </li>
 
                     <li class="nav-link">
-                        <a href="#">
+                        <a href="animations.html">
                             <i class="bx bx-right-arrow icon"></i>
                             <span class="text nav-text">Animacje</span>
                         </a>
@@ -231,12 +231,12 @@ const ctx2 = canvas2.getContext('2d');
 ctx2.rect(0, 0, canvas2.width, canvas2.height);
 
 //Tu tworzymy gradient
-const grd = ctx2.createLinearGradient(0, 0, canvas2.width, canvas2.height);
+const grd2 = ctx2.createLinearGradient(0, 0, canvas2.width, canvas2.height);
 //dajemy kolor początkowy
-grd.addColorStop(0, '#00ffFF');   
+grd2.addColorStop(0, '#00ffFF');   
 //dajemy kolor końcowy
-grd.addColorStop(1, 'darkblue');
-ctx2.fillStyle = grd;
+grd2.addColorStop(1, 'darkblue');
+ctx2.fillStyle = grd2;
 ctx2.fill();</code></pre>
                 </div>
                 <div  class="code-result">
@@ -247,12 +247,12 @@ ctx2.fill();</code></pre>
                         ctx2.rect(0, 0, canvas2.width, canvas2.height);
 
                         //Tu tworzymy gradient
-                        const grd = ctx2.createLinearGradient(0, 0, canvas2.width, canvas2.height);
+                        const grd2 = ctx2.createLinearGradient(0, 0, canvas2.width, canvas2.height);
                         //dajemy kolor początkowy
-                        grd.addColorStop(0, '#00ffFF');   
+                        grd2.addColorStop(0, '#00ffFF');   
                         //dajemy kolor końcowy
-                        grd.addColorStop(1, 'darkblue');
-                        ctx2.fillStyle = grd;
+                        grd2.addColorStop(1, 'darkblue');
+                        ctx2.fillStyle = grd2;
                         ctx2.fill();
                     </script>
 
@@ -277,29 +277,30 @@ ctx2.fill();</code></pre>
                 <div class="code-container">
                     <pre><code class="code html">&lt;canvas  id="myCanvas2" width="300" height="300"&gt;&lt;/canvas&gt;</code></pre>
 
-                    <pre><code class="code javascript">var canvas3 = document.getElementById('myCanvas3');
-var ctx3 = canvas3.getContext('2d');
+                    <pre><code class="code javascript">const canvas3 = document.getElementById('myCanvas3');
+const ctx3 = canvas3.getContext('2d');
 ctx3.rect(0, 0, canvas3.width, canvas3.height);
 //Odstep od lewej , odstep od gory , nasilenie koloru , promień o który okrąg się obraca, rozszerzenie okręgu o promień, promień gradientu
-var grd = ctx3.createRadialGradient(15, 200, 0, 100, 50, 300);
-grd.addColorStop(0, '#00ffff');
-grd.addColorStop(1, 'darkblue');
+const grd3 = ctx3.createRadialGradient(15, 200, 0, 100, 50, 300);
+grd3.addColorStop(0, '#00ffff');
+grd3.addColorStop(1, 'darkblue');
 
-ctx3.fillStyle = grd;
-ctx3.fill();</code></pre>
+ctx3.fillStyle = grd3;
+ctx3.fill();
+                    </code></pre>
                 </div>
                 <div  class="code-result">
                     <canvas  id="myCanvas3" width="300" height="300"></canvas>
                     <script>
-                        var canvas3 = document.getElementById('myCanvas3');
-                        var ctx3 = canvas3.getContext('2d');
+                        const canvas3 = document.getElementById('myCanvas3');
+                        const ctx3 = canvas3.getContext('2d');
                         ctx3.rect(0, 0, canvas3.width, canvas3.height);
                         //Odstep od lewej , odstep od gory , nasilenie koloru , promień o który okrąg się obraca, rozszerzenie okręgu o promień, promień gradientu
-                        var grd2 = ctx3.createRadialGradient(15, 200, 0, 100, 50, 300);
-                        grd.addColorStop(0, '#00ffff');
-                        grd.addColorStop(1, 'darkblue');
+                        const grd3 = ctx3.createRadialGradient(15, 200, 0, 100, 50, 300);
+                        grd3.addColorStop(0, '#00ffff');
+                        grd3.addColorStop(1, 'darkblue');
 
-                        ctx3.fillStyle = grd;
+                        ctx3.fillStyle = grd3;
                         ctx3.fill();
                     </script>
                 </div>
@@ -324,17 +325,30 @@ ctx3.fill();</code></pre>
                 <div class="code-container">
                     <pre><code class="code html">&lt;canvas  id="myCanvas2" width="300" height="300"&gt;&lt;/canvas&gt;</code></pre>
 
-                    <pre><code class="code javascript"></code></pre>
+                    <pre><code class="code javascript">
+const canvas4 = document.getElementById('myCanvas4');
+const ctx4 = canvas4.getContext('2d');
+
+const imageObj = new Image();
+imageObj.onload = function() {
+const pattern = ctx4.createPattern(imageObj, 'repeat');
+
+ctx4.rect(0, 0, canvas4.width, canvas4.height);
+ctx4.fillStyle = pattern;
+ctx4.fill();
+};
+imageObj.src = 'http://www.html5canvastutorials.com/demos/assets/wood-pattern.png';
+                    </code></pre>
                 </div>
                 <div  class="code-result">
                     <canvas  id="myCanvas4" width="300" height="300"></canvas>
                     <script>
-                        var canvas4 = document.getElementById('myCanvas4');
-                        var ctx4 = canvas4.getContext('2d');
+                        const canvas4 = document.getElementById('myCanvas4');
+                        const ctx4 = canvas4.getContext('2d');
 
-                        var imageObj = new Image();
+                        const imageObj = new Image();
                         imageObj.onload = function() {
-                        var pattern = ctx4.createPattern(imageObj, 'repeat');
+                        const pattern = ctx4.createPattern(imageObj, 'repeat');
 
                         ctx4.rect(0, 0, canvas4.width, canvas4.height);
                         ctx4.fillStyle = pattern;

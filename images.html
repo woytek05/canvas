@@ -1,6 +1,3 @@
-<!-- -------------------------------- PANOWIE TUTAJ MACIE PUSTĄ WERSJĘ STORNY DO WYPEŁNIENIA I WYBORU NIE TRZEBA KORZYSTAĆ ALE MOŻE POMÓC -------------------------------- -->
-
-
 <!DOCTYPE html>
 <html lang="pl-PL">
 
@@ -156,51 +153,118 @@
 
     <div class="main-container">
 <!-- ------------------------ HEADER ------------------------ -->
-        <h1></h1>
+        <h1>Obrazy</h1>
 <!-- ------------------------ First element ------------------------ -->
         <details>
             <summary>
-                <h3></h3>
+                <h3>Rysowanie Obrazu</h3>
             </summary>
-            <p></p>
+            <p>
+                Do narysowania obrazu, możemy użyć metody <span class="blue-code">drawImage</span><span class="grey-code">()</span>, 
+                która wymaga obiektu obrazu i punktu docelowego. Punkt docelowy definiuje lewy górny róg obrazu w stosunku do lewego górnego rogu płótna.
+            </p>
             <h4></h4>
             <div class="code-presentation">
                 <div class="code-container">
                     <pre><code class="code html">&lt;canvas  id="myCanvas2" width="300" height="300"&gt;&lt;/canvas&gt;</code></pre>
 
-                    <pre><code class="code css"></code></pre>
+                    <pre><code class="code javascript">
+const canvas1 = document.getElementById('myCanvas1');
+const ctx1 = canvas1.getContext('2d');
+const imageObj = new Image();
 
-                    <pre><code class="code javascript"></code></pre>
+imageObj.onload = function() {
+    //Pozycjonowanie obiektu (zdjecie, oś x, oś y)
+    ctx1.drawImage(imageObj, -50, 0);
+};
+imageObj.src = 'http://www.html5canvastutorials.com/demos/assets/darth-vader.jpg';
+                    </code></pre>
                 </div>
                 <div  class="code-result">
                     <canvas  id="myCanvas1" width="300" height="300"></canvas>
                     <script>
+                        const canvas1 = document.getElementById('myCanvas1');
+                        const ctx1 = canvas1.getContext('2d');
+                        const imageObj = new Image();
 
+                        imageObj.onload = function() {
+                            //Pozycjonowanie obiektu (zdjecie, oś x, oś y)
+                            ctx1.drawImage(imageObj, -50, 0);
+                        };
+                        imageObj.src = 'http://www.html5canvastutorials.com/demos/assets/darth-vader.jpg';
                     </script>
 
                 </div>
             </div>
-            
+            <p>
+                Ponieważ metoda <span class="blue-code">drawImage</span><span class="grey-code">()</span> wymaga obiektu obrazu, musimy najpierw utworzyć obraz 
+                i poczekać na jego załadowanie przed utworzeniem instancji <span class="blue-code">drawImage</span><span class="grey-code">()</span>. 
+                Możemy to osiągnąć za pomocą właściwości <span class="red-code">onload</span> obiektu image. <br>
+                Dodatkowo możemy ustawić wysokość i szerokość zdjęcia ustawiając <span class="blue-code">width</span> i <span class="blue-code">height</span>
+            </p>
         </details>
 <!-- ------------------------ Second element ------------------------ -->
         <details>
             <summary>
-                <h3></h3>
+                <h3>Przycinanie</h3>
             </summary>
-            <p></p>
+            <p>
+                Aby przyciąć obraz, możemy dodać sześć dodatkowych argumentów do metody <span class="blue-code">drawImage</span><span class="grey-code">()</span>: <br>
+                <span class="red-code">sourceX</span>, <span class="red-code">sourceY</span>, <span class="red-code">sourceWidth</span>, <span class="red-code">sourceHeight</span>, <span class="red-code">destWidth</span> i <span class="red-code">destHeight</span>. <br>
+                Argumenty te określają położenie i rozmiar prostokąta, który chcemy wyciąć z obrazu.
+            </p>
+
+            <div class="photo">
+                <img src="images/img-cut.png" alt="wyciecie">
+            </div>
+
             <h4></h4>
             <div class="code-presentation">
                 <div class="code-container">
                     <pre><code class="code html">&lt;canvas  id="myCanvas2" width="300" height="300"&gt;&lt;/canvas&gt;</code></pre>
 
-                    <pre><code class="code css"></code></pre>
+                    <pre><code class="code javascript">
+const canvas2 = document.getElementById('myCanvas2');
+const ctx2 = canvas2.getContext('2d');
+const imageObj2 = new Image();
 
-                    <pre><code class="code javascript"></code></pre>
+imageObj2.onload = function() {
+    // draw cropped image
+    const sourceX = 150;
+    const sourceY = 0;
+    const sourceWidth = 150;
+    const sourceHeight = 150;
+    const destWidth = sourceWidth;
+    const destHeight = sourceHeight;
+    const destX = canvas2.width / 2 - destWidth / 2;
+    const destY = canvas2.height / 2 - destHeight / 2;
+
+    ctx2.drawImage(imageObj2, sourceX, sourceY, sourceWidth, sourceHeight, destX, destY, destWidth, destHeight);
+};
+imageObj2.src = 'http://www.html5canvastutorials.com/demos/assets/darth-vader.jpg';
+                    </code></pre>
                 </div>
                 <div  class="code-result">
                     <canvas  id="myCanvas2" width="300" height="300"></canvas>
                     <script>
+                        const canvas2 = document.getElementById('myCanvas2');
+                        const ctx2 = canvas2.getContext('2d');
+                        const imageObj2 = new Image();
 
+                        imageObj2.onload = function() {
+                            // draw cropped image
+                            const sourceX = 150;
+                            const sourceY = 0;
+                            const sourceWidth = 150;
+                            const sourceHeight = 150;
+                            const destWidth = sourceWidth;
+                            const destHeight = sourceHeight;
+                            const destX = canvas2.width / 2 - destWidth / 2;
+                            const destY = canvas2.height / 2 - destHeight / 2;
+
+                            ctx2.drawImage(imageObj2, sourceX, sourceY, sourceWidth, sourceHeight, destX, destY, destWidth, destHeight);
+                        };
+                        imageObj2.src = 'http://www.html5canvastutorials.com/demos/assets/darth-vader.jpg';
                     </script>
 
                 </div>
@@ -208,24 +272,58 @@
             
         </details>
 <!-- ------------------------ Third element ------------------------ -->
-        <details>
+        <details>           <!-- TODO: Finish element, add js pseudocode -->
             <summary>
-                <h3></h3>
+                <h3>Wczytanie obrazów</h3>
             </summary>
-            <p></p>
+            <p>
+                Gdy aplikacje wymagają wielu obrazów, 
+                zwykle dobrym pomysłem jest załadowanie ich wszystkich przed rysowaniem w canvie. 
+                Aby uprościć proces ładowania, wygodnie jest użyć funkcji ładowania obrazów, 
+                która pobiera skrót źródeł obrazów, tworzy skrót obrazów, a następnie wywołuje funkcję zdefiniowaną przez użytkownika, 
+                gdy wszystkie obrazy zostaną załadowane.
+            </p>
             <h4></h4>
             <div class="code-presentation">
                 <div class="code-container">
                     <pre><code class="code html">&lt;canvas  id="myCanvas2" width="300" height="300"&gt;&lt;/canvas&gt;</code></pre>
 
-                    <pre><code class="code css"></code></pre>
-
-                    <pre><code class="code javascript"></code></pre>
+                    <pre><code class="code javascript"></code></pre>      
                 </div>
                 <div  class="code-result">
-                    <canvas  id="myCanvas3" width="300" height="300"></canvas>
-                    <script>
+                    <canvas  id="myCanvas3" width="300" height="300"></canvas> 
+                    <script>                                                   //FIXME: Code doesn't show images
+                        function loadImages(sources3, callback) {
+                            let images = {};
+                            const loadedImages3 = 0;
+                            const numImages3 = 0;
+                            // get num of sources
+                            for(const src3 in sources3) {
+                                numImages3++;
+                            }
+                            for(const src3 in sources3) {
+                                images[src3] = new Image();
+                                images[src3].onload = function() {
+                                    if(++loadedImages3 >= numImages3) {
+                                        callback(images);
+                                    }
+                                };
+                                images[src3].src3 = sources3[src3];
+                            }
+                        }
+                        
+                        const canvas3 = document.getElementById('myCanvas3');
+                        const ctx3 = canvas3.getContext('2d');
 
+                        const sources3 = {
+                            darthVader: 'http://www.html5canvastutorials.com/demos/assets/darth-vader.jpg',
+                            yoda: 'http://www.html5canvastutorials.com/demos/assets/yoda.jpg'
+                        };
+
+                        loadImages(sources3, function(images) {
+                            ctx3.drawImage(images.darthVader, 100, 30, 200, 137);
+                            ctx3.drawImage(images.yoda, 350, 55, 93, 104);
+                        });
                     </script>
 
                 </div>
