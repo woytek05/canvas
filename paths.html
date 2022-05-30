@@ -75,7 +75,7 @@
                         </a>
                     </li>
                     <li class="nav-link">
-                        <a href="fillin'.html">
+                        <a href="filling.html">
                             <i class="bx bx-palette icon"></i>
                             <span class="text nav-text">Style wypełnienia</span>
                         </a>
@@ -136,18 +136,13 @@
 &rcub;</code></pre>
                     <pre><code class="code javascript">const canvas = document.getElementById("firstCanvas");
 const ctx = canvas.getContext("2d");
-        
-let x = canvas.width / 2;
-let y = canvas.height / 2;
-let radius = 75;
-let startAngle = 1.1 * Math.PI;
-let endAngle = 1.9 * Math.PI;
-let counterClockwise = false;
 
 ctx.beginPath();
-ctx.arc(x, y, radius, startAngle, endAngle, counterClockwise);
-ctx.lineWidth = 15;
-ctx.strokeStyle = "black";
+ctx.moveTo(30, 30);
+ctx.lineTo(90, 150);
+ctx.quadraticCurveTo(120, 30, 150, 150);
+ctx.bezierCurveTo(210, 180, 240, 210, 150, 240);
+ctx.lineWidth = 10;
 ctx.stroke();</code></pre>
                 </div>
                 <div class="code-result">
@@ -155,17 +150,13 @@ ctx.stroke();</code></pre>
                     <script>
                         const firstCanvas = document.getElementById("firstCanvas");
                         const firstCtx = firstCanvas.getContext("2d");
-                        let x = firstCanvas.width / 2;
-                        let y = firstCanvas.height / 2;
-                        let radius = 75;
-                        let startAngle = 1.1 * Math.PI;
-                        let endAngle = 1.9 * Math.PI;
-                        let counterClockwise = false;
 
                         firstCtx.beginPath();
-                        firstCtx.arc(x, y, radius, startAngle, endAngle, counterClockwise);
-                        firstCtx.lineWidth = 15;
-                        firstCtx.strokeStyle = "black";
+                        firstCtx.moveTo(30, 30);
+                        firstCtx.lineTo(90, 150);
+                        firstCtx.quadraticCurveTo(120, 30, 150, 150);
+                        firstCtx.bezierCurveTo(210, 180, 240, 210, 150, 240);
+                        firstCtx.lineWidth = 10;
                         firstCtx.stroke();
                     </script>
                 </div>
@@ -174,15 +165,9 @@ ctx.stroke();</code></pre>
 
         <details>
             <summary>
-                <h3>Parabola</h3>
+                <h3>Połączenia linii</h3>
             </summary>
-            <p>Aby utworzyć parabolę, używamy metody <span class="blue-code">quadraticCurveTo</span><span class="grey-code">()</span>. Parabole są definiowane przez punkt kontekstowy, punkt kontrolny i punkt końcowy. Można je stylizować za pomocą właściwości <span class="grey-code">lineWidth</span>, <span class="grey-code">strokeStyle</span> i <span class="grey-code">lineCap</span>.</p>
-
-            <div class="photo">
-                <img src="images/quadratic-curve.png" alt="Parabola">
-            </div>
-
-            <p>Punkt kontrolny definiuje krzywiznę paraboli, tworząc dwie linie styczne, które są połączone z punktem kontekstowym i punktem końcowym. Punkt kontekstu jest definiowany przez metodę <span class="blue-code">moveTo</span><span class="grey-code">()</span>. Przesunięcie punktu kontrolnego dalej od punktu kontekstu i punktu końcowego spowoduje utworzenie ostrzejszych krzywych, a przesunięcie punktu kontrolnego bliżej punktu kontekstu i punktu końcowego stworzy szersze krzywe.</p>
+            <p>Aby zmienić styl łączenia linii w ścieżce, ustawiamy właściwość kontekstu <span class="grey-code">lineJoin</span> na jedną z trzech wartości: miter (domyślny), round lub bevel.</p>
 
             <div class="code-presentation">
                 <div class="code-container">
@@ -191,12 +176,17 @@ ctx.stroke();</code></pre>
     border: 3px solid black;
 &rcub;</code></pre>
                     <pre><code class="code javascript">const canvas = document.getElementById("secondCanvas");
-const ctx = canvas.getContext("2d");
-        
+const ctx = secondCanvas.getContext("2d");
+
 ctx.beginPath();
-ctx.moveTo(75, 150);
-ctx.quadraticCurveTo(150, 30, 225, 150);
-ctx.lineWidth = 10;
+ctx.moveTo(60, 240);
+ctx.lineTo(120, 90);
+ctx.lineTo(150, 240);
+ctx.lineTo(210, 90);
+ctx.lineTo(240, 240);
+ctx.lineJoin = "round";
+ctx.lineWidth = 25;
+
 ctx.strokeStyle = "black";
 ctx.stroke();</code></pre>
                 </div>
@@ -207,122 +197,16 @@ ctx.stroke();</code></pre>
                         const secondCtx = secondCanvas.getContext("2d");
 
                         secondCtx.beginPath();
-                        secondCtx.moveTo(75, 150);
-                        secondCtx.quadraticCurveTo(150, 30, 225, 150);
-                        secondCtx.lineWidth = 10;
+                        secondCtx.moveTo(60, 240);
+                        secondCtx.lineTo(120, 90);
+                        secondCtx.lineTo(150, 240);
+                        secondCtx.lineTo(210, 90);
+                        secondCtx.lineTo(240, 240);
+                        secondCtx.lineJoin = "round";
+                        secondCtx.lineWidth = 25;
 
                         secondCtx.strokeStyle = "black";
                         secondCtx.stroke();
-                    </script>
-                </div>
-            </div>
-        </details>
-
-        <details>
-            <summary>
-                <h3>Krzywa Beziera</h3>
-            </summary>
-            <p>Aby utworzyć krzywą Beziera, używamy metody <span class="blue-code">bezierCurveTo</span><span class="grey-code">()</span>. Krzywe Beziera są definiowane za pomocą punktu kontekstowego, dwóch punktów kontrolnych i punktu końcowego. W przeciwieństwie do paraboli, krzywe Beziera są definiowane za pomocą dwóch punktów kontrolnych zamiast jednego, co pozwala nam tworzyć bardziej złożone krzywizny. Krzywe Beziera można stylizować za pomocą właściwości <span class="grey-code">lineWidth</span>, <span class="grey-code">strokeStyle</span> i <span class="grey-code">lineCap</span>.</p>
-
-            <div class="photo">
-                <img src="images/bezier-curve.png" alt="Krzywa Beziera">
-            </div>
-
-            <p>Krzywa Beziera jest zdefiniowana przez bieżący punkt kontekstu, dwa punkty kontrolne i punkt końcowy. Pierwsza część krzywej jest styczna do linii zdefiniowanej przez punkt kontekstowy i pierwszy punkt kontrolny. Druga część krzywej jest styczna do linii określonej przez drugi punkt kontrolny i punkt końcowy.</p>
-
-            <div class="code-presentation">
-                <div class="code-container">
-                    <pre><code class="code html">&lt;canvas id="thirdCanvas" width="300px" height="300px"&gt;&lt;&sol;canvas&gt;</code></pre>
-                    <pre><code class="code css">canvas &lcub;
-    border: 3px solid black;
-&rcub;</code></pre>
-                    <pre><code class="code javascript">const canvas = document.getElementById("thirdCanvas");
-const ctx = canvas.getContext("2d");
-        
-ctx.beginPath();
-ctx.moveTo(30, 210);
-ctx.bezierCurveTo(60, 60, 270, 60, 240, 210);
-ctx.lineWidth = 10;
-ctx.strokeStyle = "black";
-ctx.stroke();</code></pre>
-                </div>
-                <div class="code-result">
-                    <canvas id="thirdCanvas" width="300px" height="300px"></canvas>
-                    <script>
-                        const thirdCanvas = document.getElementById("thirdCanvas");
-                        const thirdCtx = thirdCanvas.getContext("2d");
-
-                        thirdCtx.beginPath();
-                        thirdCtx.moveTo(30, 210);
-                        thirdCtx.bezierCurveTo(60, 60, 270, 60, 240, 210);
-                        thirdCtx.lineWidth = 10;
-                        thirdCtx.strokeStyle = 'black';
-                        thirdCtx.stroke();
-                    </script>
-                </div>
-            </div>
-        </details>
-
-        <details>
-            <summary>
-                <h3>Ćwiczenie</h3>
-            </summary>
-            <div class="exercise-text">
-                <button class="show-solution default-color">Rozwiązanie</button>
-                <p>Stwórz dwa kwadraty w kolorze flagi Ukrainy.</p>
-            </div>
-            <div class="code-presentation">
-                <div class="code-container exercise">
-                    <pre><code class="code html">&lt;canvas id="fifthCanvas" width="300px" height="300px"&gt;&lt;&sol;canvas&gt;</code></pre>
-                    <pre><code class="code css">canvas &lcub;
-        border: 3px solid black;
-    &rcub;</code></pre>
-                    <pre><code class="code javascript">const canvas = document.getElementById("fifthCanvas");
-const ctx = canvas.getContext("2d");
-            
-ctx.beginPath();
-ctx.moveTo(50, 50);
-ctx.lineTo(250, 50);
-ctx.lineTo(250, 250);
-ctx.lineWidth = 5;
-ctx.lineCap = "round";
-ctx.strokeStyle = "#0057B7";
-ctx.stroke();
-
-ctx.beginPath();
-ctx.moveTo(250, 250);
-ctx.lineTo(50, 250);
-ctx.lineTo(50, 50);
-ctx.strokeStyle = "#FFDD00";
-ctx.stroke();
-
-ctx.beginPath();
-ctx.moveTo(75, 75);
-ctx.lineTo(225, 75);
-ctx.lineTo(225, 225);
-ctx.strokeStyle = "#FFDD00";
-ctx.stroke();
-
-ctx.beginPath();
-ctx.moveTo(225, 225);
-ctx.lineTo(75, 225);
-ctx.lineTo(75, 75);
-ctx.strokeStyle = "#0057B7";
-ctx.stroke();</code></pre>
-                </div>
-                <div class="code-result">
-                    <canvas id="fifthCanvas" width="300px" height="300px"></canvas>
-                    <script>
-                        const fifthCanvas = document.getElementById("fifthCanvas");
-                        const fifthCtx = fifthCanvas.getContext("2d");
-
-                        fifthCtx.beginPath();
-                        fifthCtx.moveTo(30, 30);
-                        fifthCtx.lineTo(90, 150);
-                        fifthCtx.quadraticCurveTo(120, 30, 150, 150);
-                        fifthCtx.bezierCurveTo(210,180,240,210,150,240);
-                        fifthCtx.lineWidth = 10;
-                        fifthCtx.stroke();
                     </script>
                 </div>
             </div>
