@@ -75,7 +75,7 @@
                         </a>
                     </li>
                     <li class="nav-link">
-                        <a href="fillin'.html">
+                        <a href="filling.html">
                             <i class="bx bx-palette icon"></i>
                             <span class="text nav-text">Style wypełnienia</span>
                         </a>
@@ -264,49 +264,6 @@ ctx.stroke();</code></pre>
                         thirdCtx.lineWidth = 10;
                         thirdCtx.strokeStyle = 'black';
                         thirdCtx.stroke();
-                    </script>
-                </div>
-            </div>
-        </details>
-
-        <details>
-            <summary>
-                <h3>Ćwiczenie</h3>
-            </summary>
-            <div class="exercise-text">
-                <button class="show-solution default-color">Rozwiązanie</button>
-                <p>Stwórz dowolną ścieżkę składającą się z łuku, paraboli i krzywej Beziera.</p>
-            </div>
-            <div class="code-presentation">
-                <div class="code-container exercise">
-                    <pre><code class="code html">&lt;canvas id="fifthCanvas" width="300px" height="300px"&gt;&lt;&sol;canvas&gt;</code></pre>
-                    <pre><code class="code css">canvas &lcub;
-        border: 3px solid black;
-    &rcub;</code></pre>
-                    <pre><code class="code javascript">const canvas = document.getElementById("fifthCanvas");
-const ctx = canvas.getContext("2d");
-            
-ctx.beginPath();
-ctx.moveTo(30, 30);
-ctx.lineTo(90, 150);
-ctx.quadraticCurveTo(120, 30, 150, 150);
-ctx.bezierCurveTo(210, 180, 240, 210, 150, 240);
-ctx.lineWidth = 10;
-ctx.stroke();</code></pre>
-                </div>
-                <div class="code-result">
-                    <canvas id="fifthCanvas" width="300px" height="300px"></canvas>
-                    <script>
-                        const fifthCanvas = document.getElementById("fifthCanvas");
-                        const fifthCtx = fifthCanvas.getContext("2d");
-
-                        fifthCtx.beginPath();
-                        fifthCtx.moveTo(30, 30);
-                        fifthCtx.lineTo(90, 150);
-                        fifthCtx.quadraticCurveTo(120, 30, 150, 150);
-                        fifthCtx.bezierCurveTo(210, 180, 240, 210, 150, 240);
-                        fifthCtx.lineWidth = 10;
-                        fifthCtx.stroke();
                     </script>
                 </div>
             </div>
