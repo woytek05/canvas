@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Jakub Noga, Wiktor Wolanin, Wojciech Wysocki">
+    <meta name="description" content="Strona opisująca HTML Canvas">
+    <meta name="keywords" content="canvas, html, css, javascript">
+    <link rel="shortcut icon" href="images/logo.ico" type="image/x-icon">
+    <title>HTML Canvas</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles/index-style.css">
+
+    <!-- Boxicons CSS -->
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+
+    <!-- Highlight.js -->
+    <link rel="stylesheet" href="highlight/styles/atom-one-dark.min.css" />
+    <script src="highlight/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+
+    <style>
+        canvas {
+            border: 3px solid black;
+
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <nav class="sidebar close">
+
+        <header>
+
+            <div class="image-text">
+
+                <span class="image">
+                    <a href="index.html">
+                        <img src="images/logo.png" alt="Logo">
+                    </a>
+                </span>
+
+                <div class="text header-text">
+
+                    <span class="name">
+                        <a href="index.html">
+                            HTML Canvas
+                        </a>
+                    </span>
+
+                    <span class="description">
+                        <a href="index.html">
+                            Poradnik
+                        </a>
+                    </span>
+
+                </div>
+
+            </div>
+
+            <i class="bx bx-chevron-right toggle"></i>
+
+        </header>
+
+        <div class="menu-bar">
+
+            <div class="menu">
+
+                <ul class="menu-links">
+
+                    <li class="nav-link">
+                        <a href="lines.html">
+                            <i class="bx bx-right-arrow-alt icon"></i>
+                            <span class="text nav-text">Linie</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="#">
+                            <i class="bx bx-trending-up icon"></i>
+                            <span class="text nav-text">Krzywe</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="#">
+                            <i class="bx bx-redo icon"></i>
+                            <span class="text nav-text">Ścieżki</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="#">
+                            <i class="bx bx-circle icon"></i>
+                            <span class="text nav-text">Kształty</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="#">
+                            <i class="bx bx-palette icon"></i>
+                            <span class="text nav-text">Style wypełnienia</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="#">
+                            <i class="bx bx-image icon"></i>
+                            <span class="text nav-text">Obrazy</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="#">
+                            <i class="bx bx-text icon"></i>
+                            <span class="text nav-text">Tekst</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="#">
+                            <i class="bx bx-wrench icon"></i>
+                            <span class="text nav-text">Przekształcenia</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="#">
+                            <i class="bx bx-right-arrow icon"></i>
+                            <span class="text nav-text">Animacje</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="#">
+                            <i class="bx bx-pointer icon"></i>
+                            <span class="text nav-text">Wykrywanie myszy</span>
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+    <div class="main-container">
+
+        <h1>Animacje i Wykrywanie kolizji</h1>
+
+        <details>
+            <summary>
+                <h3>Animacje</h3>
+            </summary>
+            <p>
+              Animacje elementu canvas, można zrobić na kilka sposobów. Jednym z nich jest poznanana wcześniej reakcja na zdarzenia myszy i klawiatury, drugim funkcja <span class="blue-code">window.setInterval</span> wykonująca się co określony czas.
+              Najczęściej obie te funcje występują razem i wzajemnie się uzupełniają. Niezaleznie od wybranego sposobu, animacja polega na zmienianiu wartości zmiennej (przechowywującej np pozycję, czy kolor), a następnie rysowania elementu, który jako jeden z argumentów przyjmuję tą zmienną.
+            <br>
+            Żeby sprawić, żeby obiekt poruszał się na płótnie, a nie  tylko klonował, należy w każdej klatce animacji wyczyścić płótno i naryswać wszystkie elementy od nowa
+            
+            </p>
+        </details>
+
+        <details>
+            <summary>
+                <h3>Użycie funcji <span class="blue-code">setInterval</span> do animowania ruchu i wykrywanie kolizji z granicą płótna</h3>
+            </summary>
+            <p>Funkcja <span class="blue-code">setInterval</span> przyjmuje 2 argumenty. Pierwszym z nich jest funkcja jaka ma się wywołać (może to być też definicja funcji), drugim jest czas podawany w milisekundach
+           
+            </p>
+            <h4>Przykład:</h4>
+
+            <div class="code-presentation">
+
+                <div class="code-container">
+                    <pre><code class="code html">&lt;canvas id="myCanvas" width="300" height="300" &gt;&lt;&sol;canvas&gt;</code></pre>
+
+                    <pre><code class="code css">canvas &lcub;
+    border: 3px solid black;
+&rcub;</code></pre>
+
+                    <pre><code class="code javascript">
+const canvas = document.getElementById("myCanvas");
+const ctx = canvas.getContext("2d");
+let ballSize = 20;
+let x = ballSize;
+let y = Math.floor(canvas.height/2);
+let speed = 3;
+
+
+//Ustawienie funcji set Interval na wywoływanie funcji animation
+setInterval(animate, 1000/30);
+
+
+//animacja
+function animate() {
+    //Sprawdzamy czy piłka dotyka ściany
+    //ballSize to promień piłki, a x to jej środek
+    //
+    if(x + ballSize  &lt;= canvas.width && x>= ballSize){
+        x+= speed;
+    } else {
+        //odbijanie piłki poprzez zmianę znaku prędkości. 
+        speed = speed * -1;
+        x+= speed;
+    }
+    clear()
+    DrawCircle();
+}
+
+//czyszczenie płótna
+function clear() {
+    //rysowanie okręgu
+    ctx.fillStyle= "white";
+    ctx.fillRect(0,0, canvas.width, canvas.height);
+}
+
+//rysowanie piłki
+function DrawCircle() {
+    ctx.fillStyle= "red";
+    ctx.beginPath();
+    ctx.arc(x, y, ballSize, 0, 2 * Math.PI);
+    ctx.fill();
+}
+
+</code></pre>
+
+                </div>
+                <div  class="code-result">
+
+                    <canvas  id="myCanvas" width="300" height="300"></canvas>
+                    <script>
+                        const canvas = document.getElementById("myCanvas");
+                        const ctx = canvas.getContext("2d");
+                        let ballSize = 20;
+                        let x = ballSize;
+                        let y = Math.floor(canvas.height/2);
+                        let speed = 3;
+                        
+
+                        setInterval(animate, 1000/30);
+
+                        function animate() {
+                            if(x + ballSize  <= canvas.width && x>= ballSize){
+                            
+                                x+= speed;
+                            } else {
+                                speed = speed * -1;
+                                x+= speed;
+                            }
+                            clear()
+                            DrawCircle();
+                        }
+                        function clear() {
+                         
+                            ctx.fillStyle= "white";
+                            ctx.fillRect(0,0, canvas.width, canvas.height);
+
+                        }
+                        function DrawCircle() {
+                            //rysowanie piłki
+                            ctx.fillStyle= "red";
+                            ctx.beginPath();
+                            ctx.arc(x, y, ballSize, 0, 2 * Math.PI);
+                            ctx.fill();
+                        }
+                    </script>
+
+                </div>
+                </div>
+                <p>
+                   W przykładzie ustawiamy metodę <span class="blue-code">setInterval</span> na wywoływanie funcji animate, w 30 klatkach na sekundę.
+                   <br>
+                   Funkcja animate odpowiedzialna jest za przemieszczanie piłki, wykrywanie krawędzi i samą animację, którą uzyskujemy poprzez czyszczenie ekranu i rysowanie piłki w nowej pozycji.
+                
+
+                </p>
+            
+        </details>
+
+        <details>
+            <summary>
+                <h3>Dodanie obsługi zdarzeń do animacji</h3>
+            </summary>
+            <p>W poprzednim przykładzie piłka porusza się sama, ale co jeśli chcemy sterować poruszaniem jakiegoś elementu (np paletki w grze)/. Tu z pomocą przychodzą poznane nam wcześniej eventy</p>
+            <h4>Przykład</h4>
+            <div class="code-presentation">
+
+                <div class="code-container">
+                    <pre><code class="code html">&lt;canvas id="myCanvas" width="300" height="300" &gt;&lt;&sol;canvas&gt;</code></pre>
+
+                    <pre><code class="code css">canvas &lcub;
+    border: 3px solid black;
+&rcub;</code></pre>
+
+                    <pre><code class="code javascript">
+const canvas = document.getElementById("myCanvas");
+const ctx = canvas.getContext("2d");
+let playerHeight = 80;
+let playerWidth = 30;
+let x = Math.floor(canvas.width/2) - playerWidth /2;
+let y = Math.floor(canvas.height/2);
+let speed = 1;
+
+window.addEventListener("mousemove", playerMove)
+
+function playerMove (event){
+    const rect = canvas.getBoundingClientRect();
+    /*pobieranie z obiektu event całkowitych współrzędnych myszki 
+        i odjęcie od nich pozycji elementu canvas*/
+    let mouseY = event.clientY - rect.top;
+
+    if(y &lt; mouseY && y+playerHeight &lt; canvas.height) {
+        y+= speed;
+    }
+    else if (y &gt; mouseY && y &gt; 0) {
+        y-= speed;
+    }
+}
+
+
+setInterval(animate, 1000/30);
+
+//animacja
+function animate() {
+    clear();
+    DrawCircle();
+}
+
+//czyszczenie płotna
+function clear() {
+    //rysowanie okręgu
+    ctx.fillStyle= "white";
+    ctx.fillRect(0,0, canvas.width, canvas.height);
+}
+
+//rysowanie piłki
+function DrawCircle() {
+    ctx.fillStyle= "red";
+ 
+    ctx.fillRect(x, y, playerWidth, playerHeight);
+}
+
+
+
+
+
+</code></pre>
+
+                </div>
+                <div  class="code-result">
+                    
+                    <canvas  id="myCanvas2" width="300" height="300"></canvas>
+                    <script>
+                    const playerHeight = 120;
+                    const playerWidth = 20;
+                    const canvas2 = document.getElementById("myCanvas2");
+                    const ctx2 = canvas2.getContext("2d");
+                    let x2 = Math.floor(canvas2.width/2) - playerWidth /2;
+                    let y2 = Math.floor(canvas2.height/2);
+                    let speed2 = 4;
+            
+                    let mouseY;
+          
+
+                    window.addEventListener("mousemove", update);
+                    function update(event) {
+                        const rect = canvas2.getBoundingClientRect();
+                        mouseY = event.clientY - rect.top;
+                
+                    }
+
+                    function playerMove() {
+
+                        if(y2 < mouseY - speed2&& y2 < canvas2.height - playerHeight) {
+                            y2+= speed2;
+                        }
+                        
+                        else if (y2 > mouseY && y2 > 0) {
+                            y2-= speed2;
+                        }
+                    }
+
+                    setInterval(animate2, 1000/30);
+
+                    //animacja
+                    function animate2() {
+                        playerMove();
+                        clear2();
+                        DrawCircle2();
+                        
+                    }
+
+                    //czyszczenie płotna
+                    function clear2() {
+                    //rysowanie okręgu
+                        ctx2.fillStyle= "white";
+                        ctx2.fillRect(0,0, canvas2.width, canvas2.height);
+                    }
+
+                    //rysowanie piłki
+                    function DrawCircle2() {
+                        ctx2.fillStyle= "red";
+                        ctx2.beginPath();
+                        ctx2.fillRect(x2, y2, 30, playerHeight);
+                        
+                        
+                    }  
+                    </script>
+
+                </div>
+                </div>
+ 
+        </details>
+
+   
+      
+
+    </div>
+
+    <script src="scripts/sidebar.js"></script>
+
+</body>
+
+</html>
