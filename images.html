@@ -271,97 +271,243 @@ imageObj2.src = 'http://www.html5canvastutorials.com/demos/assets/darth-vader.jp
             </div>
             
         </details>
+
 <!-- ------------------------ Third element ------------------------ -->
-        <details>           <!-- TODO: Finish element, add js pseudocode -->
+        <details>           
             <summary>
-                <h3>Wczytanie obrazów</h3>
+                <h3>Dane Obrazu i inwersja kolorów</h3>
             </summary>
             <p>
-                Gdy aplikacje wymagają wielu obrazów, 
-                zwykle dobrym pomysłem jest załadowanie ich wszystkich przed rysowaniem w canvie. 
-                Aby uprościć proces ładowania, wygodnie jest użyć funkcji ładowania obrazów, 
-                która pobiera skrót źródeł obrazów, tworzy skrót obrazów, a następnie wywołuje funkcję zdefiniowaną przez użytkownika, 
-                gdy wszystkie obrazy zostaną załadowane.
+                Aby uzyskać dane obrazu dla każdego piksela prostokątnego obszaru, 
+                możemy pobrać obiekt danych obrazu za pomocą metody <span class="blue-code">getImageData</span><span class="grey-code">()</span>, 
+                a następnie uzyskać dostęp do danych pikseli z właściwości data. 
+                Każdy piksel w danych obrazu zawiera cztery składniki: czerwony, zielony, niebieski i alfa. <br>
+                Otrzymane dane z obrazu <span class="red-code">odwracamy</span> i wyświetlamy w canvasie.
             </p>
-            <h4></h4>
             <div class="code-presentation">
                 <div class="code-container">
-                    <pre><code class="code html">&lt;canvas  id="myCanvas2" width="300" height="300"&gt;&lt;/canvas&gt;</code></pre>
+                    <pre><code class="code html">
+&lt;canvas  id="myCanvas2" width="300" height="300"&gt;&lt;/canvas&gt;
+&lt;img style="display: none;"src="https://cdn.hashnode.com/res/hashnode/image/upload/v1600097347472/FaJTB7UrN.jpeg" id="evee"&gt;
+                    </code></pre>
 
-                    <pre><code class="code javascript"></code></pre>      
+                    <pre><code class="code javascript">
+const img3 = document.getElementById("eeveelutions");
+const canvas = document.getElementById("myCanvas3");
+const ctx3 = canvas.getContext("2d");
+
+img3.onload = function () {
+img3.crossOrigin = "anonymous";
+ctx3.drawImage(img3, 0, 0);
+const imgData = ctx3.getImageData(0, 0, canvas.width, canvas.height);
+for (i = 0; i &lt; imgData.data.length; i += 4) {
+    imgData.data[i] = 255 - imgData.data[i];
+    imgData.data[i + 1] = 255 - imgData.data[i + 1];
+    imgData.data[i + 2] = 255 - imgData.data[i + 2];
+    imgData.data[i + 3] = 255;
+}
+ctx3.putImageData(imgData, 0, 0);
+};
+                    </code></pre>      
                 </div>
                 <div  class="code-result">
-                    <canvas  id="myCanvas3" width="300" height="300"></canvas> 
-                    <script>                                                   //FIXME: Code doesn't show images
-                        function loadImages(sources3, callback) {
-                            let images = {};
-                            const loadedImages3 = 0;
-                            const numImages3 = 0;
-                            // get num of sources
-                            for(const src3 in sources3) {
-                                numImages3++;
-                            }
-                            for(const src3 in sources3) {
-                                images[src3] = new Image();
-                                images[src3].onload = function() {
-                                    if(++loadedImages3 >= numImages3) {
-                                        callback(images);
-                                    }
-                                };
-                                images[src3].src3 = sources3[src3];
-                            }
+                    <canvas  id="myCanvas3" width="300" height="300"></canvas>
+                    <img style="display: none;" src="https://cdn.hashnode.com/res/hashnode/image/upload/v1600018073360/uqh3T0Ts_.jpeg" id="eeveelutions" /> 
+                    <script>                                                   
+                        const img3 = document.getElementById("eeveelutions");
+                        const canvas = document.getElementById("myCanvas3");
+                        const ctx3 = canvas.getContext("2d");
+
+                        img3.onload = function () {
+                        img3.crossOrigin = "anonymous";
+                        ctx3.drawImage(img3, 50, 50);
+                        const imgData = ctx3.getImageData(0, 0, canvas.width, canvas.height);
+                        for (i = 0; i < imgData.data.length; i += 4) {
+                            imgData.data[i] = 255 - imgData.data[i];
+                            imgData.data[i + 1] = 255 - imgData.data[i + 1];
+                            imgData.data[i + 2] = 255 - imgData.data[i + 2];
+                            imgData.data[i + 3] = 255;
                         }
-                        
-                        const canvas3 = document.getElementById('myCanvas3');
-                        const ctx3 = canvas3.getContext('2d');
-
-                        const sources3 = {
-                            darthVader: 'http://www.html5canvastutorials.com/demos/assets/darth-vader.jpg',
-                            yoda: 'http://www.html5canvastutorials.com/demos/assets/yoda.jpg'
+                        ctx3.putImageData(imgData, 0, 0);
                         };
-
-                        loadImages(sources3, function(images) {
-                            ctx3.drawImage(images.darthVader, 100, 30, 200, 137);
-                            ctx3.drawImage(images.yoda, 350, 55, 93, 104);
-                        });
                     </script>
 
                 </div>
             </div>
-            
+            <p>
+                Istnieją trzy popularne techniki uzyskiwania dostępu do danych pikseli za pomocą obiektu danych obrazu: <br>
+                - po wszystkich pikselach, zaczynając od lewego górnego rogu do prawego dolnego rogu regionu <br>
+                - wybieranie danych pikseli na podstawie współrzędnych x, y <br>
+                - po wszystkich pikselach, śledząc współrzędne x, y dla każdego piksela <br> <br>
+            </p>
+
+            <p>
+                <span class="red-code">
+                    Metoda getImageData() wymaga, 
+                    aby obraz był przechowywany na serwerze WWW z tą samą domeną, 
+                    co wykonujący go kod. Jeśli ten warunek nie zostanie spełniony, zostanie zgłoszony wyjątek SECURITY_ERR.
+                </span>
+            </p>
         </details>
 
 <!-- ------------------------ Fourth element ------------------------ -->
 
         <details>
             <summary>
-                <h3></h3>
+                <h3>Odcienie szarości</h3>
             </summary>
-            <p></p>
-            <h4></h4>
+            <p>
+                Ponownie używamy metody <span class="blue-code">getImageData</span><span class="grey-code">()</span>. <br>
+                Ustawiamy wartości dla białego, szarego i czarnego, a następnie kolorujemy część zdjęcia na odpowiedni kolor i wkładamy do canvasa.
+            </p>
             <div class="code-presentation">
                 <div class="code-container">
-                    <pre><code class="code html">&lt;canvas  id="myCanvas2" width="300" height="300"&gt;&lt;/canvas&gt;</code></pre>
+                    <pre><code class="code html">
+&lt;canvas  id="myCanvas2" width="300" height="300"&gt;&lt;/canvas&gt;
+&lt;img style="display: none;"src="https://cdn.hashnode.com/res/hashnode/image/upload/v1600097347472/FaJTB7UrN.jpeg" id="evee"&gt;
+                    </code></pre>
 
-                    <pre><code class="code css"></code></pre>
+                    <pre><code class="code javascript">
+const img = document.getElementById("evee");
+const canvas4 = document.getElementById("myCanvas4");
+const ctx4 = canvas4.getContext("2d");
 
-                    <pre><code class="code javascript"></code></pre>
+img.onload = function () {
+    img.crossOrigin = "anonymous";
+    ctx4.drawImage(img, 50, 50);
+    const imgData = ctx4.getImageData(0, 0, canvas.width, canvas.height);
+    for (i = 0; i &lt; imgData.data.length; i += 4) {
+        let count = imgData.data[i] + imgData.data[i + 1] + imgData.data[i + 2];
+        let colour = 0;
+        if (count > 510) colour = 255;
+        else if (count > 255) colour = 127.5;
+
+        imgData.data[i] = colour;
+        imgData.data[i + 1] = colour;
+        imgData.data[i + 2] = colour;
+        imgData.data[i + 3] = 255;
+    }
+    ctx4.putImageData(imgData, 0, 0);
+};
+                    </code></pre>
                 </div>
                 <div  class="code-result">
                     <canvas  id="myCanvas4" width="300" height="300"></canvas>
+                    <img style="display: none;"src="https://cdn.hashnode.com/res/hashnode/image/upload/v1600097347472/FaJTB7UrN.jpeg" id="evee" />
                     <script>
 
-                    </script>
+                        const img = document.getElementById("evee");
+                        const canvas4 = document.getElementById("myCanvas4");
+                        const ctx4 = canvas4.getContext("2d");
 
+                        img.onload = function () {
+                            img.crossOrigin = "anonymous";
+                            ctx4.drawImage(img, 50, 50);
+                            const imgData = ctx4.getImageData(0, 0, canvas.width, canvas.height);
+                            for (i = 0; i < imgData.data.length; i += 4) {
+                                let count = imgData.data[i] + imgData.data[i + 1] + imgData.data[i + 2];
+                                let colour = 0;
+                                if (count > 510) colour = 255;
+                                else if (count > 255) colour = 127.5;
+
+                                imgData.data[i] = colour;
+                                imgData.data[i + 1] = colour;
+                                imgData.data[i + 2] = colour;
+                                imgData.data[i + 3] = 255;
+                            }
+                            ctx4.putImageData(imgData, 0, 0);
+                        };
+                    </script>
                 </div>
             </div>
             
         </details>
 
+        <!-- ------------------- Next Fucking element [5] (not dead, not sleepy, but fucking tired! its GOD DAMN 1am. I will be dead tomorrow) -->
+
+        <details>
+            <summary>
+                <h3>Zapis rysunku do URL</h3>
+            </summary>
+            <p>
+                Aby uzyskać adres <span class="red-code">URL</span> danych obrazu kanwy, możemy użyć metody <span class="blue-code">toDataURL</span><span class="grey-code">()</span> obiektu, 
+                która konwertuje rysunek na 64-bitowy zakodowany adres URL PNG. <br> 
+                Jeśli chcesz, aby adres URL danych obrazu był w formacie jpeg, możesz przekazać obraz/jpeg jako pierwszy argument w metodzie <span class="blue-code">toDataURL</span><span class="grey-code">()</span>. 
+                Jeśli chcesz kontrolować jakość obrazu jpeg, możesz przekazać liczbę od <span class="red-code">0</span> do <span class="red-code">1</span> jako drugi argument do metody <span class="blue-code">toDataURL</span><span class="grey-code">()</span>.
+            </p>
+            <div class="code-presentation">
+                <div class="code-container">
+                    <pre><code class="code html">&lt;canvas  id="myCanvas2" width="300" height="300"&gt;&lt;/canvas&gt;</code></pre>
+
+                    <pre><code class="code javascript">
+const canvas5 = document.getElementById('myCanvas5');
+const ctx5 = canvas5.getContext('2d');
+
+// rysujemy dowolny obraz
+const centerX = canvas5.width / 2;
+const centerY = canvas5.height / 2;
+const radius = 70;
+
+ctx5.beginPath();
+const grd5 = ctx5.createLinearGradient(0, 0, canvas5.width, canvas5.height);
+grd5.addColorStop(0, '#00ffFF');   
+grd5.addColorStop(1, 'darkblue');
+ctx5.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
+ctx5.fillStyle = grd5
+ctx5.fill();
+ctx5.lineWidth = 5;
+ctx5.strokeStyle = '#blue'
+ctx5.stroke();
+
+// zapis obrazu (domyślnie PNG)
+const dataURL = canvas5.toDataURL();
+
+//umożliwiamy zapisanie rysunku jako zdjęcie
+document.getElementById('canvaImg').src = dataURL;
+                    </code></pre>
+                </div>
+                <div  class="code-result">
+                    <canvas  id="myCanvas5" width="300" height="300"></canvas>
+                    <img style='height: 120px; width: 120px;' id="canvaImg" alt="Click to save">
+                    <script>
+                        const canvas5 = document.getElementById('myCanvas5');
+                        const ctx5 = canvas5.getContext('2d');
+
+                        // rysujemy dowolny obraz
+                        const centerX = canvas5.width / 2;
+                        const centerY = canvas5.height / 2;
+                        const radius = 70;
+
+                        ctx5.beginPath();
+                        const grd5 = ctx5.createLinearGradient(0, 0, canvas5.width, canvas5.height);
+                        grd5.addColorStop(0, '#00ffFF');   
+                        grd5.addColorStop(1, 'darkblue');
+                        ctx5.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
+                        ctx5.fillStyle = grd5
+                        ctx5.fill();
+                        ctx5.lineWidth = 5;
+                        ctx5.strokeStyle = '#blue'
+                        ctx5.stroke();
+
+                        // zapis obrazu (domyślnie PNG)
+                        const dataURL = canvas5.toDataURL();
+                        
+                        //umożliwiamy zapisanie rysunku jako zdjęcie
+                        document.getElementById('canvaImg').src = dataURL;
+                    </script>
+
+                </div>
+                
+            </div>
+            <p>
+                Możemy dodać małe zdjęcie z boku które można zapisać prawym przyciskiem myszki
+            </p>
+        </details>
 
     </div>
 
     <script src="scripts/sidebar.js"></script>
+
 
 </body>
 
